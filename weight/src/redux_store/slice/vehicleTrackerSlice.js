@@ -5,15 +5,16 @@ export const fetchVehicleTracker = createAsyncThunk("vehicleTracker/getVehicleTr
     try {
         const res = await axios.get("http://[::1]:3000/vehicles", {
           params: {
-            filter: {
+            filter: JSON.stringify({
               offset: 0,
               limit: 10,
               skip: 0,
               order: "createdAt desc",
               where: { vehicleType: "LMV" },
-            },
+            }),
           },
         });
+        return res.data;
     } catch (error) {
        console.log(error); 
     }
@@ -31,16 +32,16 @@ export const vehicleTrackerSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getVehicleTracker.pending, (state, action) => {
-            state.loading = true;
+        builder.addCase(fetchVehicleTracker.pending, (state, action) => {
+          state.loading = true;
         });
-        builder.addCase(getVehicleTracker.fulfilled, (state, action) => {
-            state.loading = false;
-            state.vehicleTrackerData = action.payload;
+        builder.addCase(fetchVehicleTracker.fulfilled, (state, action) => {
+          state.loading = false;
+          state.vehicleTrackerData = action.payload;
         });
-        builder.addCase(getVehicleTracker.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.error.message;
+        builder.addCase(fetchVehicleTracker.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
         });
     },
 });

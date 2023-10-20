@@ -9,20 +9,16 @@ const VehicleTable = () => {
   React.useEffect(() => {
     dispatch(fetchVehicleTracker());
   },[]);
+
   const vehicleTracker = useSelector(VehicleTrackerData);
 
   const mappedData = vehicleTracker.map((item) => ({
     id: item.vehicleId,
-    weighttype: "#3d7",
-    vehicleno: 54,
-    slipno: 71,
-    weightdate: "6/13/2023",
-    vehicletype: "CNY",
-    supplier: "Finance",
-    charges: 55,
-    netweight: 91,
-    measuretype: 2006,
-    receipt: "Andalax",
+    vehicleId: item.vehicleId,
+    rfidNumber: item.rfidNumber,
+    vehicleNumber: item.vehicleNumber,
+    vehicleType: item.vehicleType,
+    tareWeight: item.tareWeight,
   }));
 
 
@@ -106,7 +102,7 @@ const VehicleTable = () => {
   return (
     <div style={{ height: "100%" }} className="mx-20">
       <DataGrid
-        rows={rows}
+        rows={mappedData}
         rowHeight={80}
         columns={columns}
         initialState={{
