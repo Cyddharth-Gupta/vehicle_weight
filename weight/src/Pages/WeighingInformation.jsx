@@ -47,6 +47,7 @@ const WeighingInformation = () => {
       );
       const form = event.target;
       form.reset();
+      window.alert("Form Submitted Successfully!")
       console.log(res.data);
       return res.data;
     } catch (error) {

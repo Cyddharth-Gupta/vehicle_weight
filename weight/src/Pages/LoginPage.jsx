@@ -28,6 +28,7 @@ const LoginPage = ({onLogin}) => {
     onLogin();
     const form = event.target;
     form.reset();
+    window.alert("Form Submitted Successfully!")
   };
   const fields = [
     {
