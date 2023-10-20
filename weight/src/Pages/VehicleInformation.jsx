@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
+import axios from "axios";
 
 const VehicleInformation = () => {
   const {
@@ -13,44 +14,63 @@ const VehicleInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const onSubmit = (event) => {
+
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
     const formDataObject = {};
     formData.forEach((value, key) => {
-      formDataObject[key] = value;
+      // Parse the value as a number if it's the 'tareWeight' field
+      formDataObject[key] = key === "tareWeight" ? parseFloat(value) : value;
     });
-
-    console.log(formDataObject);
-    const form = event.target;
-    form.reset();
+console.log(formDataObject);
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/vehicles",
+       JSON.stringify(formDataObject),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const form = event.target;
+      form.reset();
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(formDataObject);
+    // const form = event.target;
+    // form.reset();
   };
 
   const fields = [
     {
-      name: "rfid",
+      name: "rfidNumber",
       label: "RFID",
       type: "number",
       required: true,
       maxLength: 20,
     },
     {
-      name: "vehiclenumber",
+      name: "vehicleNumber",
       label: "Vehicle Number",
-      type: "number",
+      type: "string",
       required: true,
       maxLength: 20,
     },
     {
-      name: "vehicletype",
+      name: "vehicleType",
       label: "Vehicle Type",
       type: "select",
       required: true,
       options: ["ALL", "LMV", "HMV"],
     },
     {
-      name: "tareweight",
+      name: "tareWeight",
       label: "Tare Weight",
       type: "number",
       required: true,
@@ -61,7 +81,7 @@ const VehicleInformation = () => {
   const customInputClass = "mx-14 mb-10";
   const customSelectClass = "mx-14 mb-10";
   const customLabelClass = "mx-14 ";
-  const customButtonClass="px-28 my-5";
+  const customButtonClass = "px-28 my-5";
   const customClass = "ml-60";
   return (
     <div className="flex flex-row">
@@ -84,12 +104,11 @@ const VehicleInformation = () => {
             className="flex-row"
             fields={fields}
             errors={errors}
-
             submitButtonLabel={"Submit"}
             customInputClass={customInputClass}
             customLabelClass={customLabelClass}
             customButtonClass={customButtonClass}
-            customSelectClass = {customSelectClass}
+            customSelectClass={customSelectClass}
             customClass={customClass}
           />
         </main>
