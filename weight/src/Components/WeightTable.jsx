@@ -78,7 +78,7 @@ const WeightTable = () => {
       align: "center",
       renderCell: (cellValues) => {
         return (
-          <a href="https://example.c">
+          <a href={cellValues.row.receipt}>
             <ReceiptLongOutlinedIcon style={{ color: "#6759FF" }} />
           </a>
         );
