@@ -47,7 +47,7 @@ const VehicleInformation = () => {
       label: "Vehicle Type",
       type: "select",
       required: true,
-      options: ["ALL", "LMV", "HMV", "Pending"],
+      options: ["ALL", "LMV", "HMV"],
     },
     {
       name: "tareweight",
