@@ -38,25 +38,11 @@ const UserInformationGeneral = () => {
       maxLength: 20,
     },
     {
-      name: "email",
-      label: "Email",
-      type: "email",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "mobileNumber",
-      label: "Mobile No.",
-      type: "number",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "city",
-      label: "City",
+      name: "employeeId",
+      label: "Employee Id",
       type: "text",
       required: true,
-      maxLength: 20,
+      maxLength: 200,
     },
     {
       name: "userType",

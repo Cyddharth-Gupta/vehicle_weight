@@ -17,7 +17,6 @@ const WeighingInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const dispatch = useDispatch(); 
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
