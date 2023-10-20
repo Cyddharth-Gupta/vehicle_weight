@@ -86,6 +86,7 @@ const WeightTable = () => {
     },
   ];
 
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
