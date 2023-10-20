@@ -2,6 +2,9 @@ import React from "react";
 import ReusableForm from "../Components/ReusableForm";
 import glass from "../assets/vehicleinformationglass.svg";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { userGeneralInfoData } from "../redux_store/slice/userTrackerSlice";
 
 const UserInformationAdvanced = () => {
   const {
@@ -11,7 +14,10 @@ const UserInformationAdvanced = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (event) => {
+  const userGeneralInfo = useSelector(userGeneralInfoData);
+  console.log(userGeneralInfo);
+
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -20,14 +26,33 @@ const UserInformationAdvanced = () => {
       formDataObject[key] = value;
     });
 
-    console.log(formDataObject);
-    const form = event.target;
-    form.reset();
+    const mergedData = {
+      ...userGeneralInfo,
+      ...formDataObject,
+    };
+    console.log(mergedData);
+
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/users",
+        JSON.stringify(mergedData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(formDataObject);
+    // const form = event.target;
+    // form.reset();
   };
 
   const fields = [
     {
-      name: "usernam",
+      name: "username",
       label: "Username",
       type: "text",
       required: true,
