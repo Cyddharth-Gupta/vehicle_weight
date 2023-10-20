@@ -16,11 +16,11 @@ const NavigationDrawer = () => {
   const user = useSelector(userData);
   console.log(user?.data.userData.fullName);
 
-  const handleLogOut = async (event) => {
+  const handleLogOut = async () => {
     try {
       const res = await axios.post(
         "http://[::1]:3000/users/logout",
-        user?.data.userId,
+        user?.data.userData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const NavigationDrawer = () => {
           to="/Logout"
           icon={faArrowRightFromBracket}
           className="text-red-600"
-          onClick={(event) => handleLogOut(event)}
+          onClick={() => handleLogOut()}
         >
           Log Out
         </Button>
