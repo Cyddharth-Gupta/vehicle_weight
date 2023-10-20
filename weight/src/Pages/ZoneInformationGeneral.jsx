@@ -79,18 +79,11 @@ const ZoneInformationGeneral = () => {
       maxLength: 20,
     },
     {
-      name: "ManagedBy",
-      label: "Managed By",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
       name: "Status",
       label: "Status",
       type: "select",
       required: true,
-      options: ["Select Status", "Active", "Inactive", "Pending"],
+      options: ["","Active", "Inactive"],
     },
   ];
 

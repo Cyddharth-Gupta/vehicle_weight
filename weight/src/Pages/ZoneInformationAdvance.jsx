@@ -30,32 +30,53 @@ const ZoneInformationAdvance = () => {
 
   const fields = [
     {
-      name: "ZoneName",
-      label: "Zone Name",
+      name: "cctvipAddress",
+      label: "Cctv IPAddress",
+      type: "text",
+      required: true,
+      maxLength: 70,
+    },
+    {
+      name: "rfidPort",
+      label: "RFID Port",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-      name: "State",
-      label: "State",
+      name: "weighingPort",
+      label: "Weighing Port",
+      type: "number",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "baudRate",
+      label: "Baud Rate",
+      type: "number",
+      maxLength: 20,
+      required: true,
+    },
+    {
+      name: "parity",
+      label: "Parity",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-      name: "ManagedBy",
-      label: "Managed By",
-      type: "text",
+      name: "stopBits",
+      label: "Stop Bits",
+      type: "number",
       required: true,
       maxLength: 20,
     },
     {
-      name: "Status",
-      label: "Status",
-      type: "select",
+      name: "flowControl",
+      label: "Flow Control",
+      type: "boolean",
       required: true,
-      options: ["Select Status", "Active", "Inactive", "Pending"],
+      maxLength: 20,
     },
   ];
 
@@ -72,6 +93,14 @@ const ZoneInformationAdvance = () => {
         submitButtonLabel={"Submit"}
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
+        validation={{
+          cctvipAddress: {
+            pattern: {
+              value: /^(\d{1,3}\.){3}\d{1,3}$/,
+              message: "Invalid IP address format",
+            },
+          },
+        }}
       />
     </main>
   );
