@@ -1,7 +1,27 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { VehicleTrackerData } from "../redux_store/slice/vehicleTrackerSlice";
+import { fetchVehicleTracker } from "../redux_store/slice/vehicleTrackerSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const VehicleTable = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchVehicleTracker());
+  },[]);
+
+  const vehicleTracker = useSelector(VehicleTrackerData);
+
+  const mappedData = vehicleTracker.map((item) => ({
+    id: item.vehicleId,
+    vehicleId: item.vehicleId,
+    rfidNumber: item.rfidNumber,
+    vehicleNumber: item.vehicleNumber,
+    vehicleType: item.vehicleType,
+    tareWeight: item.tareWeight,
+  }));
+
+
   const columns = [
     {
       field: "vehicleId",
@@ -82,7 +102,7 @@ const VehicleTable = () => {
   return (
     <div style={{ height: "100%" }} className="mx-20">
       <DataGrid
-        rows={rows}
+        rows={mappedData}
         rowHeight={80}
         columns={columns}
         initialState={{

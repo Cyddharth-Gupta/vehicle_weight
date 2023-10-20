@@ -78,7 +78,7 @@ const WeightTable = () => {
       align: "center",
       renderCell: (cellValues) => {
         return (
-          <a href="https://example.com">
+          <a href="https://example.c">
             <ReceiptLongOutlinedIcon style={{ color: "#6759FF" }} />
           </a>
         );
@@ -86,34 +86,6 @@ const WeightTable = () => {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      weighttype: "#3d7",
-      vehicleno: 54,
-      slipno: 71,
-      weightdate: "6/13/2023",
-      vehicletype: "CNY",
-      supplier: "Finance",
-      charges: 55,
-      netweight: 91,
-      measuretype: 2006,
-      receipt: "Andalax",
-    },
-    {
-      id: 2,
-      weighttype: "#3d7",
-      vehicleno: 54,
-      slipno: 71,
-      weightdate: "6/13/2023",
-      vehicletype: "CNY",
-      supplier: "Finance",
-      charges: 55,
-      netweight: 91,
-      measuretype: 2006,
-      receipt: "Andalax",
-    },
-  ];
 
   const dispatch = useDispatch();
 
