@@ -32,7 +32,7 @@ const UserInformationGeneral = () => {
 
   const fields = [
     {
-      name: "FullName",
+      name: "fullName",
       label: "Name",
       type: "text",
       required: true,

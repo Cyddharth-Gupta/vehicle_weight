@@ -224,7 +224,6 @@ export default function UserTrackerTable() {
     id: item.userId,
     avatar: "",
     name: item.username,
-    managedby: "",
     zone: "West",
     employeeid: item.employeeId,
     dob: formatDateToDDMMYYYY(new Date(item.dateOfBirth)),
