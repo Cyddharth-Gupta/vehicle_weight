@@ -12,7 +12,7 @@ const WeightTable = () => {
       headerName: "Weight Type",
       flex: 1,
       headerAlign: "center",
-      align: "left",
+      align: "center",
     },
     {
       field: "vehicleno",
