@@ -133,7 +133,7 @@ const WeighingInformation = () => {
       label: "Vehicle Type",
       type: "select",
       required: true,
-      options: ["ALL", "LMV", "HMV"],
+      options: ["", "ALL", "LMV", "HMV"],
     },
     {
       name: "material",

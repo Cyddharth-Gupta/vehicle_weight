@@ -57,9 +57,9 @@ const UserInformationGeneral = () => {
     {
       name: "userType",
       label: "User Type",
-      type: "text",
+      type: "select",
       required: true,
-      maxLength: 20,
+      options: ["", "Admin", "Employee"],
     },
   ];
 
