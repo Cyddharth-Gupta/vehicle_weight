@@ -8,6 +8,8 @@ import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { fetchWeightTracker } from "../redux_store/slice/weightTrackerSlice";
+import { useDispatch } from "react-redux";
 
 const WeighingInformation = () => {
   const {
@@ -16,6 +18,7 @@ const WeighingInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const dispatch = useDispatch(); 
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

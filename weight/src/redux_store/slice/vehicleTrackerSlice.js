@@ -10,7 +10,7 @@ export const fetchVehicleTracker = createAsyncThunk("vehicleTracker/getVehicleTr
               limit: 10,
               skip: 0,
               order: "createdAt desc",
-              where: { vehicleType: "LMV" },
+              where: {},
             }),
           },
         });
