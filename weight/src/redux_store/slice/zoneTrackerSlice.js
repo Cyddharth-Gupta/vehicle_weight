@@ -37,27 +37,34 @@ export const fetchZoneTracker = createAsyncThunk(
 const initialState = {
     loading: false,
     zoneTrackerData: [],
+    zoneFormGeneralData: [],
     error: null,
 };
 
 export const zoneTrackerSlice = createSlice({
-    name: "zoneTracker",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(fetchZoneTracker.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(fetchZoneTracker.fulfilled, (state, action) => {
-            state.loading = false;
-            state.zoneTrackerData = action.payload;
-        });
-        builder.addCase(fetchZoneTracker.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.error.message;
-        });
+  name: "zoneTracker",
+  initialState,
+  reducers: {
+    zoneFormGeneralDataInfo: (state, action) => {
+      state.zoneFormGeneralData = action.payload;
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchZoneTracker.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchZoneTracker.fulfilled, (state, action) => {
+      state.loading = false;
+      state.zoneTrackerData = action.payload;
+    });
+    builder.addCase(fetchZoneTracker.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+  },
 });
 
 export default zoneTrackerSlice.reducer;
 export const zoneTrackerData = (state) => state.zoneTracker.zoneTrackerData;
+export const zoneFormGeneralData = (state) => state.zoneTracker.zoneFormGeneralData;
+export const { zoneFormGeneralDataInfo } = zoneTrackerSlice.actions;
