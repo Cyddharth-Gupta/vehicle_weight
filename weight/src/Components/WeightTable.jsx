@@ -12,7 +12,7 @@ const WeightTable = () => {
       headerName: "Weight Type",
       flex: 1,
       headerAlign: "center",
-      align: "left",
+      align: "center",
     },
     {
       field: "vehicleno",
@@ -78,9 +78,9 @@ const WeightTable = () => {
       align: "center",
       renderCell: (cellValues) => {
         return (
-          <button>
+          <a href="https://example.com">
             <ReceiptLongOutlinedIcon style={{ color: "#6759FF" }} />
-          </button>
+          </a>
         );
       },
     },
