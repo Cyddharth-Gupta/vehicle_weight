@@ -259,7 +259,7 @@ const WeightTable = () => {
     const year = date.getFullYear();
 
     return `${day}/${month}/${year}`;
-  }
+  };
 
   const weightMappedData = weightData.map((item) => ({
     id: item.weighingDataId,

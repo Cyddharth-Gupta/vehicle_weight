@@ -5,6 +5,9 @@ import Avatar from "@mui/material/Avatar";
 import priyanka from "../assets/priyanka.jpg";
 import naruto from "../assets/naruto.jpg";
 import sakura from "../assets/sakura.jpg";
+import { fetchUserTracker } from "../redux_store/slice/userTrackerSlice";
+import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
+import {useSelector, useDispatch} from "react-redux"
 
 
 const columns = [
@@ -201,10 +204,40 @@ const rows = [
 ];
 
 export default function UserTrackerTable() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchUserTracker());
+  },[]);
+
+  const userTracker = useSelector(userTrackerData);
+  
+  const formatDateToDDMMYYYY = (date) => {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
+
+  const mappedData = userTracker.map((item) => ({
+    id: item.userId,
+    avatar: "",
+    name: item.username,
+    managedby: "",
+    zone: "West",
+    employeeid: item.employeeId,
+    dob: formatDateToDDMMYYYY(new Date(item.dateOfBirth)),
+    new: "New",
+    status: item.status,
+    actions: "some actions",
+  }));
+
+
   return (
     <div style={{ height: "100%" }} className="mx-20">
       <DataGrid
-        rows={rows}
+        rows={mappedData}
         rowHeight={80}
         columns={columns}
         initialState={{
