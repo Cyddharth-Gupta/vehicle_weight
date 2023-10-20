@@ -2,9 +2,6 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import Avatar from "@mui/material/Avatar";
-import priyanka from "../assets/priyanka.jpg";
-import naruto from "../assets/naruto.jpg";
-import sakura from "../assets/sakura.jpg";
 import { zoneTrackerData } from "../redux_store/slice/zoneTrackerSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchZoneTracker } from "../redux_store/slice/zoneTrackerSlice";
@@ -89,117 +86,6 @@ const columns = [
     },
   },
 ];
-
-// const rows = [
-//   {
-//     id: 1,
-//     avatar: priyanka,
-//     name: "Priyanka",
-//     zone: "Jon",
-//     address: 35,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Inactive",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 2,
-//     avatar: naruto,
-//     name: "John Cena",
-//     managedby: "Lannister",
-//     zone: "Cersei",
-//     address: 42,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 3,
-//     avatar: sakura,
-//     name: "Shah rukh khan",
-//     managedby: "Lannister",
-//     zone: "Jaime",
-//     address: 45,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Inactive",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 4,
-//     avatar: sakura,
-//     name: "Siddharth Malhotra",
-//     managedby: "Stark",
-//     zone: "Arya",
-//     age: 16,
-//     address: 68,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Inactive",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 5,
-//     avatar: naruto,
-//     name: "Ronaldo",
-//     managedby: "Targaryen",
-//     zone: "Daenerys",
-//     address: 268,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 6,
-//     avatar: sakura,
-//     name: "Christopher Nolan",
-//     managedby: "Melisandre",
-//     zone: "Priyanka",
-//     address: 150,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 7,
-//     avatar: priyanka,
-//     name: "Spider Man",
-//     managedby: "Clifford",
-//     zone: "Ferrara",
-//     address: 44,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 8,
-//     avatar: naruto,
-//     name: "Minato",
-//     managedby: "Frances",
-//     zone: "Rossini",
-//     address: 36,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-//   {
-//     id: 9,
-//     avatar: sakura,
-//     name: "Kushina",
-//     managedby: "Roxie",
-//     zone: "Harvey",
-//     address: 65,
-//     city: "New Delhi",
-//     state: "Delhi",
-//     status: "Active",
-//     actions: "some actions",
-//   },
-// ];
 
 export default function ZoneTrackerTable() {
   const dispatch = useDispatch();
