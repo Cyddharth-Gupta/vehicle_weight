@@ -52,6 +52,10 @@ const UserInformationAdvanced = () => {
     // console.log(formDataObject);
     // const form = event.target;
     // form.reset();
+    console.log(formDataObject);
+    const form = event.target;
+    form.reset();
+    window.alert("Form Submitted Successfully!")
   };
 
   const fields = [

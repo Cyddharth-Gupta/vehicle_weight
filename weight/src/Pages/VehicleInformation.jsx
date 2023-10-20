@@ -38,11 +38,13 @@ console.log(formDataObject);
       );
       const form = event.target;
       form.reset();
+      window.alert("Form Submitted Successfully!")
       console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
     }
+
     // console.log(formDataObject);
     // const form = event.target;
     // form.reset();

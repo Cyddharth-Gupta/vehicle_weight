@@ -52,7 +52,8 @@ const ZoneInformationAdvance = () => {
     }
 
     console.log(formDataObject);
-    
+    const form = event.target;
+    form.reset();
   };
 
   const fields = [
