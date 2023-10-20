@@ -43,12 +43,12 @@ const WeighingTracker = () => {
             <h1 className="text-4xl p-7">Weighing Tracker</h1>
           </div>
           <div className="flex flex-row">
-            <button className="items-end m-8 mr-3 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF]">
+            <button className="items-end m-8 mr-3 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]">
               <AddIcon className="mr-2" />
               <Link to="/WeighingInformation">Add New</Link>
             </button>
             <button
-              className="items-end m-8 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF]"
+              className="items-end m-8 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]"
               onClick={openModal}
             >
               <FileDownloadOutlinedIcon />

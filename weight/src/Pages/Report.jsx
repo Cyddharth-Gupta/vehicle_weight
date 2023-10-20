@@ -41,7 +41,7 @@ const Report = () => {
             <h1 className="text-4xl p-7">Report</h1>
           </div>
           <button
-            className="items-end m-8 rounded-lg px-10 py-4 text-white bg-[#6759FF]"
+            className="items-end m-8 rounded-lg px-10 py-4 text-white bg-[#6759FF] hover:bg-[#5549CC]"
             onClick={openModal}
           >
             Request Report
