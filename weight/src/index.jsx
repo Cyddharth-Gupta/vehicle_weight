@@ -6,14 +6,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import VehicleInformation from './Pages/VehicleInformation';
+import WeighingInformation from './Pages/WeighingInformation';
 import UserTracker from './Pages/UserTracker';
 import Report from './Pages/Report';
 import LoginPage from './Pages/LoginPage';
 import ZoneTracker from './Pages/ZoneTracker';
 import UserInformation from './Pages/UserInformation';
-import WeightTracker from './Pages/WeightTracker';
-import Rfid from './Pages/Rfid';
+import WeighingTracker from './Pages/WeighingTracker';
+import Rfid from './Pages/WeighingInformation';
 import VehicleTracker from "./Pages/VehicleTracker";
 import {Provider} from "react-redux"
 import {store} from "./redux_store/store"
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
     element: <ZoneTracker />,
   },
   {
-    path: "/WeightTracker",
-    element: <WeightTracker />,
+    path: "/WeighingTracker",
+    element: <WeighingTracker />,
   },
   {
     path: "/ZoneInformation",
@@ -56,8 +56,8 @@ const router = createBrowserRouter([
     element: <Report />,
   },
   {
-    path: "/VehicleInformation",
-    element: <VehicleInformation />,
+    path: "/WeighingInformation",
+    element: <WeighingInformation />,
   },
   {
     path: "/LogOut",

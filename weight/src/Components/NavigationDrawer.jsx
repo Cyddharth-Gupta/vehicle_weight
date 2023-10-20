@@ -34,16 +34,16 @@ const NavigationDrawer = () => {
   };
 
   return (
-    <div className="w-[25%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
+    <div className="w-[20%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
       <div className="flex  flex-col lg:flex-row h-1/5 items-center">
         <img
           src={priyanka}
           alt="Priyanka"
-          className="w-24 h-24 rounded-full m-3"
+          className="w-20 h-20 rounded-full m-3"
         />
         <span>
           <h4>{user?.data.userData.fullName}</h4>
-          <p className="text-xs lg:text-base ">priyankachopra@gmail.com</p>
+          <p className="text-xs lg:text-md ">priyankachopra@gmail.com</p>
         </span>
       </div>
 
@@ -55,8 +55,8 @@ const NavigationDrawer = () => {
         <Button to="/VehicleTracker" icon={faTruck}>
           Vehicle Tracker
         </Button>
-        <Button to="/WeightTracker" icon={faTruck}>
-          Weight Tracker
+        <Button to="/WeighingTracker" icon={faTruck}>
+        Weighing Tracker
         </Button>
         <Button to="/UserTracker" icon={faUser}>
           User Tracker
