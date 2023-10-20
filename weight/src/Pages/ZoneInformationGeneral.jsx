@@ -6,6 +6,8 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { zoneFormGeneralDataInfo } from "../redux_store/slice/zoneTrackerSlice";
+import { useDispatch } from "react-redux";
 
 const ZoneInformationGeneral = () => {
   const {
@@ -15,6 +17,8 @@ const ZoneInformationGeneral = () => {
     reset,
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -23,27 +27,12 @@ const ZoneInformationGeneral = () => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-
+    dispatch(zoneFormGeneralDataInfo(formDataObject));
     console.log(formDataObject);
-
-    console.log(formDataObject);
-    try {
-      const res = await axios.post(
-        "http://[::1]:3000/zones",
-        JSON.stringify(formDataObject),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
       const form = event.target;
       form.reset();
       console.log(res.data);
       return res.data;
-    } catch (error) {
-      console.log(error);
-    }
     // const form = event.target;
     // form.reset();
   };

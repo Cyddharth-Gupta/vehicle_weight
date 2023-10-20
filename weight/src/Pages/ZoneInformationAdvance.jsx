@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import NavigationDrawer from "../Components/NavigationDrawer";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
 
 const ZoneInformationAdvance = () => {
   const {
@@ -14,7 +17,9 @@ const ZoneInformationAdvance = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (event) => {
+  const zoneFormData = useSelector(zoneFormGeneralData);
+
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -23,9 +28,31 @@ const ZoneInformationAdvance = () => {
       formDataObject[key] = value;
     });
 
+    const mergedData = {
+      ...zoneFormData,
+      ...formDataObject,
+    };
+
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/zones",
+        JSON.stringify(mergedData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const form = event.target;
+      form.reset();
+      log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+
     console.log(formDataObject);
-    const form = event.target;
-    form.reset();
+    
   };
 
   const fields = [
