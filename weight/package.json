@@ -53,6 +53,7 @@
     "@mui/x-date-pickers": "^6.16.2",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
+    "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "electron-squirrel-startup": "^1.0.0",
     "papaparse": "^5.4.1",

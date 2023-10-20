@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
+import DateTimeInput from './DateTimeInput';
 
 const VehicleTable = () => {
   const columns = [
@@ -57,6 +58,17 @@ const VehicleTable = () => {
       align: "center",
       type:"date_time",
       maxLength:"20",
+      renderCell: (params) => {
+        return (
+          <DateTimeInput
+            value={params.value}
+            onDateChange={(date) => {
+              // Handle date change here
+              console.log(date);
+            }}
+          />
+        );
+      },
     },
 
   
