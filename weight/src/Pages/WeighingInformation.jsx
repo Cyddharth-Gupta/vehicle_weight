@@ -7,7 +7,7 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
 
-const Rfid = () => {
+const WeighingInformation = () => {
   const {
     register,
     handleSubmit,
@@ -137,7 +137,7 @@ const Rfid = () => {
               className=" text-4xl p-5 font-medium"
             />
           </button>
-          <h1 className="text-4xl p-5 font-medium"> Vehicle Information</h1>
+          <h1 className="text-4xl p-5 font-medium"> Weighing Information </h1>
         </div>
 
         <main className="flex flex-row justify-normal ">
@@ -153,8 +153,8 @@ const Rfid = () => {
             customButtonClass={customButtonClass}
             showCancel={true}
           />
-          <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-90 ml-4 mt-20">
-            <button className=" text-white bg-[#6759FF] hover:bg-[#5549CC] py-2 px-24">
+          <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">
+            <button className=" text-white bg-[#6759FF] hover:bg-[#5549CC] py-2 px-24 w-full">
               Scan RFID Card
             </button>
             <div className=" my-3 rounded-md px-16 py-6 text-[#6759FF] border border-[#6759FF] hover:bg-gray-200">
@@ -166,7 +166,7 @@ const Rfid = () => {
               <p className="text-[#6759FF] ml-2">6770Kg</p>
             </div>
             <div className="w-full">
-              <img src={RFIDtruck} className="my-3" />
+              <img src={RFIDtruck} className="my-3 w-full" />
             </div>
           </div>
         </main>
@@ -175,4 +175,4 @@ const Rfid = () => {
   );
 };
 
-export default Rfid;
+export default WeighingInformation;

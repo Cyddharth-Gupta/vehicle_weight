@@ -97,7 +97,7 @@ const ZoneInformationGeneral = () => {
         fields={fields}
         errors={errors}
         showCancel={true}
-        submitButtonLabel={"Submit"}
+        submitButtonLabel={"Proceed"}
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
       />

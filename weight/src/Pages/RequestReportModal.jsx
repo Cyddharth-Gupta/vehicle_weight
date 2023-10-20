@@ -23,24 +23,9 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     {
       name: "vehicletype",
       label: "Vehicle Type",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "weighingtype",
-      label: "Weighing Type",
       type: "select",
       required: true,
-      maxLength: 50,
-      options: ["Select Type", "SUV", "Hatchback", "Sedan"],
-    },
-    {
-      name: "weight",
-      label: "Weight (Kg)",
-      type: "password",
-      required: true,
-      maxLength: 50,
+      options: ["", "ALL", "LMV", "HMV"],
     },
   ];
 

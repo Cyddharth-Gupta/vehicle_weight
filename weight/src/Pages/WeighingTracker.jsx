@@ -8,7 +8,7 @@ import FileUploadModal from "./FileUploadModal";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 
-const WeightTracker = () => {
+const WeighingTracker = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to open the modal
@@ -37,13 +37,14 @@ const WeightTracker = () => {
                 icon={faAngleLeft}
                 className=" text-4xl font-medium mb-5 ml-3"
               />
+              
             </button>
-            <h1 className="text-4xl p-7">Weight Tracker</h1>
+            <h1 className="text-4xl p-7">Weighing Tracker</h1>
           </div>
           <div className="flex flex-row">
             <button className="items-end m-8 mr-3 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF]">
               <AddIcon className="mr-2" />
-              <Link to="/Rfid">Add New</Link>
+              <Link to="/WeighingInformation">Add New</Link>
             </button>
             <button
               className="items-end m-8 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF]"
@@ -65,4 +66,4 @@ const WeightTracker = () => {
   );
 };
 
-export default WeightTracker;
+export default WeighingTracker;
