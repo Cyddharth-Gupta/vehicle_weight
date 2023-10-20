@@ -15,7 +15,6 @@ import axios from "axios";
 const NavigationDrawer = () => {
   const user = useSelector(userData);
   console.log(user?.data.userData.fullName);
-
   const handleLogOut = async () => {
     try {
       const res = await axios.post(

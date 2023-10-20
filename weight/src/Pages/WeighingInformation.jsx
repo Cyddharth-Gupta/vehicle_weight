@@ -8,7 +8,6 @@ import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { fetchWeightTracker } from "../redux_store/slice/weightTrackerSlice";
 import { useDispatch } from "react-redux";
 
 const WeighingInformation = () => {
