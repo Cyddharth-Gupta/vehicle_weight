@@ -2,6 +2,8 @@ import React from "react";
 import ReusableForm from "../Components/ReusableForm";
 import glass from "../assets/vehicleinformationglass.svg";
 import { useForm } from "react-hook-form";
+import { userGeneralInfo } from "../redux_store/slice/userTrackerSlice";
+import { useDispatch } from "react-redux";
 
 const UserInformationGeneral = () => {
   const {
@@ -11,6 +13,8 @@ const UserInformationGeneral = () => {
     reset,
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const onSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -19,7 +23,7 @@ const UserInformationGeneral = () => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-
+    dispatch(userGeneralInfo(formDataObject));
     console.log(formDataObject);
     const form = event.target;
     form.reset();
@@ -27,7 +31,7 @@ const UserInformationGeneral = () => {
 
   const fields = [
     {
-      name: "name",
+      name: "FullName",
       label: "Name",
       type: "text",
       required: true,

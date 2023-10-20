@@ -23,6 +23,7 @@ export const fetchUserTracker = createAsyncThunk("userTracker/fetchUserTracker",
 const initialState = {
     loading: false,
     userTrackerData: [],
+    userGeneralInfoData: [],
     error: null,
 };
 
@@ -30,7 +31,11 @@ const initialState = {
 export const userTrackerSlice = createSlice({
     name: "userTracker",
     initialState,
-    reducers:{},
+    reducers:{
+        userGeneralInfo: (state, action) => {
+            state.userGeneralInfoData = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchUserTracker.pending, (state) => {
             state.loading = true;
@@ -48,3 +53,5 @@ export const userTrackerSlice = createSlice({
 
 export default userTrackerSlice.reducer;
 export const userTrackerData = (state) => state.userTracker.userTrackerData;
+export const userGeneralInfoData = (state) => state.userTracker.userGeneralInfoData;
+export const { userGeneralInfo } = userTrackerSlice.actions;
