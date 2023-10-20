@@ -4,8 +4,8 @@ import informationTruck from "../assets/zone_information_truck.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ZoneInformationGeneral = () => {
   const {

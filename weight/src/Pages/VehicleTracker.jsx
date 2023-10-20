@@ -33,6 +33,7 @@ const VehicleTracker = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <button>
+              
               <FontAwesomeIcon
                 icon={faAngleLeft}
                 className=" text-4xl font-medium mb-5 ml-3"
