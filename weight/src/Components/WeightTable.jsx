@@ -78,9 +78,9 @@ const WeightTable = () => {
       align: "center",
       renderCell: (cellValues) => {
         return (
-          <button>
+          <a href="https://example.com">
             <ReceiptLongOutlinedIcon style={{ color: "#6759FF" }} />
-          </button>
+          </a>
         );
       },
     },
