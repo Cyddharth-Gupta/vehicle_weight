@@ -7,6 +7,7 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const WeighingInformation = () => {
   const {
@@ -15,18 +16,45 @@ const WeighingInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
     const formDataObject = {};
     formData.forEach((value, key) => {
-      formDataObject[key] = value;
+      if (
+        key === "charges" ||
+        key === "grossWeight" ||
+        key === "tareWeight" ||
+        key === "netWeight"
+      ) {
+        formDataObject[key] = parseFloat(value);
+      } else {
+        formDataObject[key] = value;
+      }
     });
 
-    console.log(formDataObject);
-    const form = event.target;
-    form.reset();
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/weighing-data",
+        JSON.stringify(formDataObject),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const form = event.target;
+      form.reset();
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+
+    // console.log(formDataObject);
+    // const form = event.target;
+    // form.reset();
   };
 
   const fields = [
