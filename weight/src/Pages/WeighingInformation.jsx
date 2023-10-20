@@ -30,92 +30,141 @@ const WeighingInformation = () => {
 
   const fields = [
     {
-      name: "ZoneName",
-      label: "Zone Name",
+      name: "rfidNumber",
+      label: "RFID Number",
+      type: "number",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "vehicleNumber",
+      label: "Vehicle Number",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "slipNumber",
+      label: "Slip Number",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-      name: "Address",
+      name: "charges",
+      label: "Charges",
+      type: "number",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "supplier",
+      label: "Supplier",
+      type: "text",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "measureType",
+      label: "Measure Type",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "weightType",
+      label: "Weight Type",
+      type: "text",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "grossWeight",
+      label: "Gross Weight",
+      type: "number",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "tareWeight",
+      label: "Tare Weight",
+      type: "number",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "netWeight",
+      label: "Net Weight",
+      type: "number",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "vehicleType",
+      label: "Vehicle Type",
+      type: "select",
+      required: true,
+      options: ["ALL", "LMV", "HMV"],
+    },
+    {
+      name: "material",
+      label: "Material",
+      type: "text",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "userId",
+      label: "User ID",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "vehicleId",
+      label: "Vehicle ID",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "zoneId",
+      label: "Zone ID",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "zoneName",
+      label: "Zone Name",
+      type: "text",
+      required: true,
+      maxLength: 50,
+    },
+    {
+      name: "address",
       label: "Address",
       type: "text",
       required: true,
       maxLength: 50,
     },
     {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "Address",
-      label: "Address",
+      name: "city",
+      label: "City",
       type: "text",
       required: true,
       maxLength: 50,
     },
     {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "Address",
-      label: "Address",
+      name: "state",
+      label: "State",
       type: "text",
       required: true,
       maxLength: 50,
     },
     {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "Address",
-      label: "Address",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
-    {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "Address",
-      label: "Address",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
-    {
-      name: "ZoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 20,
-    },
-    {
-      name: "Address",
-      label: "Address",
+      name: "employeeName",
+      label: "Employee Name",
       type: "text",
       required: true,
       maxLength: 50,
@@ -125,6 +174,7 @@ const WeighingInformation = () => {
   const customClass = "grid w-2/3 grid-cols-2 gap-4 mx-5 ";
   const customInputClass = "mx-14";
   const customLabelClass = "mx-14";
+  const customSelectClass = "mx-14";
   const customButtonClass = "px-16 my-5";
   return (
     <div className="flex flex-row">
@@ -151,6 +201,7 @@ const WeighingInformation = () => {
             customInputClass={customInputClass}
             customLabelClass={customLabelClass}
             customButtonClass={customButtonClass}
+            customSelectClass={customSelectClass}
             showCancel={true}
           />
           <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">
