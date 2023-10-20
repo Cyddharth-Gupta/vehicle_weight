@@ -33,11 +33,12 @@ const WeighingTracker = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <button>
+              <Link to = "/VehicleTracker">
               <FontAwesomeIcon
                 icon={faAngleLeft}
                 className=" text-4xl font-medium mb-5 ml-3"
               />
-              
+              </Link>
             </button>
             <h1 className="text-4xl p-7">Weighing Tracker</h1>
           </div>

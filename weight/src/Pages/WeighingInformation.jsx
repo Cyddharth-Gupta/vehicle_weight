@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
+import { Link } from "react-router-dom";
 
 const WeighingInformation = () => {
   const {
@@ -182,10 +183,12 @@ const WeighingInformation = () => {
       <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
         <div className="flex flex-row">
           <button>
+            <Link to = "/WeighingTracker">
             <FontAwesomeIcon
               icon={faAngleLeft}
               className=" text-4xl p-5 font-medium"
             />
+            </Link>
           </button>
           <h1 className="text-4xl p-5 font-medium"> Weighing Information </h1>
         </div>

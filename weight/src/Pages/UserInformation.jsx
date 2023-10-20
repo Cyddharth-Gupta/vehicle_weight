@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import TabsUserInformation from "../Components/TabsUserInformation";
+import { Link } from "react-router-dom";
 
 const UserInformation = () => {
   const {
@@ -50,10 +51,12 @@ const UserInformation = () => {
       <div className=" bg-[#F0F0F0] flex flex-grow w-full min-h-screen  flex-col">
         <div className="flex flex-row">
           <button>
+            <Link to = "/UserTracker">
             <FontAwesomeIcon
               icon={faAngleLeft}
               className=" text-4xl p-5 font-medium"
             />
+            </Link>
           </button>
           <h1 className="text-4xl p-5 font-medium"> User Information</h1>
         </div>

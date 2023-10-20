@@ -33,11 +33,12 @@ const VehicleTracker = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <button>
-              
+              <Link to = "/ZoneTracker">
               <FontAwesomeIcon
                 icon={faAngleLeft}
                 className=" text-4xl font-medium mb-5 ml-3"
               />
+              </Link>
             </button>
             <h1 className="text-4xl p-7">Vehicle Tracker</h1>
           </div>
