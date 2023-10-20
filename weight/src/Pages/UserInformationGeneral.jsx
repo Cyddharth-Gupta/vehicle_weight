@@ -27,7 +27,7 @@ const UserInformationGeneral = () => {
     console.log(formDataObject);
     const form = event.target;
     form.reset();
-    window.alert("Form Submitted Successfully!")
+
   };
 
   const fields = [
