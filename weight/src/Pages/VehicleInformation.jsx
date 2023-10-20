@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const VehicleInformation = () => {
   const {
@@ -89,10 +90,12 @@ console.log(formDataObject);
       <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
         <div className="flex flex-row">
           <button>
+            <Link to ="/VehicleTracker">
             <FontAwesomeIcon
               icon={faAngleLeft}
               className=" text-4xl p-5 font-medium"
             />
+            </Link>
           </button>
           <h1 className="text-4xl p-5 font-medium"> Vehicle Information</h1>
         </div>

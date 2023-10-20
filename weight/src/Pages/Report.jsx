@@ -3,7 +3,8 @@ import NavigationDrawer from "../Components/NavigationDrawer";
 import ReportTable from "../Components/ReportTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import RequestReportModal from "./RequestReportModal"; // Import the modal component
+import RequestReportModal from "./RequestReportModal"; 
+import { Link } from "react-router-dom";
 
 const Report = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,10 +31,12 @@ const Report = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <button onClick={openModal}>
+              <Link to ="/UserTracker">
               <FontAwesomeIcon
                 icon={faAngleLeft}
                 className=" text-4xl font-medium mb-5 ml-3"
               />
+              </Link>
             </button>
             <h1 className="text-4xl p-7">Report</h1>
           </div>

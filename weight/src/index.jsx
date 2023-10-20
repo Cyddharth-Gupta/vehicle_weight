@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import WeighingInformation from './Pages/WeighingInformation';
 import UserTracker from './Pages/UserTracker';
+import VehicleInformation from './Pages/VehicleInformation';
 import Report from './Pages/Report';
 import LoginPage from './Pages/LoginPage';
 import ZoneTracker from './Pages/ZoneTracker';
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/Report",
     element: <Report />,
+  },
+  {
+    path: "/VehicleInformation",
+    element: <VehicleInformation />,
   },
   {
     path: "/WeighingInformation",
