@@ -1,7 +1,31 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { VehicleTrackerData } from "../redux_store/slice/vehicleTrackerSlice";
+import { fetchVehicleTracker } from "../redux_store/slice/vehicleTrackerSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const VehicleTable = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchVehicleTracker());
+  },[]);
+  const vehicleTracker = useSelector(VehicleTrackerData);
+
+  const mappedData = vehicleTracker.map((item) => ({
+    id: item.vehicleId,
+    weighttype: "#3d7",
+    vehicleno: 54,
+    slipno: 71,
+    weightdate: "6/13/2023",
+    vehicletype: "CNY",
+    supplier: "Finance",
+    charges: 55,
+    netweight: 91,
+    measuretype: 2006,
+    receipt: "Andalax",
+  }));
+
+
   const columns = [
     {
       field: "vehicleId",
