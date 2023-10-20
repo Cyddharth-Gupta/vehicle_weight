@@ -6,8 +6,10 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { fetchUserTracker } from "../redux_store/slice/userTrackerSlice";
 import { zoneFormGeneralDataInfo } from "../redux_store/slice/zoneTrackerSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 
 const ZoneInformationGeneral = () => {
   const {
@@ -19,6 +21,24 @@ const ZoneInformationGeneral = () => {
 
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    dispatch(fetchUserTracker());
+  },[])
+
+  const users = useSelector(userTrackerData);
+  console.log(users);
+
+  const optionsList = users.map((item) => ([
+    `${item.fullName} - ${item.employeeId}`,
+     item.userId,
+  ]));
+
+  const fetchUserId = (fullname) => {
+    const userId = optionsList.find((item) => item[0] === fullname)[1];
+    return userId;
+  }
+
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -27,33 +47,37 @@ const ZoneInformationGeneral = () => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-    dispatch(zoneFormGeneralDataInfo(formDataObject));
-    console.log(formDataObject);
+
+    const newFormDataObject = {
+      ...formDataObject,
+      userId: fetchUserId(formDataObject.managedBy)
+    };
+
+    delete newFormDataObject.managedBy;
+
+    dispatch(zoneFormGeneralDataInfo(newFormDataObject));
+    console.log(newFormDataObject);
       const form = event.target;
       form.reset();
-      console.log(res.data);
-      return res.data;
-    // const form = event.target;
-    // form.reset();
   };
 
   const fields = [
     {
-      name: "ZoneName",
+      name: "name",
       label: "Zone Name",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-      name: "Address",
+      name: "address",
       label: "Address",
       type: "text",
       required: true,
       maxLength: 50,
     },
     {
-      name: "City",
+      name: "city",
       label: "City",
       type: "text",
       required: true,
@@ -61,7 +85,7 @@ const ZoneInformationGeneral = () => {
       maxLength: 50,
     },
     {
-      name: "State",
+      name: "state",
       label: "State",
       type: "text",
       required: true,
@@ -72,14 +96,14 @@ const ZoneInformationGeneral = () => {
       label: "Managed By",
       type: "select",
       required: true,
-      options: ["","a", "b"],
+      options: optionsList.map((item) => item[0]),
     },
     {
-      name: "Status",
+      name: "status",
       label: "Status",
       type: "select",
       required: true,
-      options: ["","Active", "Inactive"],
+      options: ["", "Active", "Inactive"],
     },
   ];
 
@@ -96,6 +120,7 @@ const ZoneInformationGeneral = () => {
         submitButtonLabel={"Proceed"}
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
+        optionsList={optionsList}
       />
     </main>
   );

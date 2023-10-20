@@ -8,6 +8,7 @@ import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
+import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 
 const ZoneInformationAdvance = () => {
   const {
@@ -25,13 +26,21 @@ const ZoneInformationAdvance = () => {
 
     const formDataObject = {};
     formData.forEach((value, key) => {
-      formDataObject[key] = value;
+      if (key === "baudRate" || key === "dataBits" || key === "stopBits") {
+        formDataObject[key] = parseFloat(value);
+      } else if (key === "flowControl") {
+        formDataObject[key] = value === "true" ? true : false;
+      }else {
+        formDataObject[key] = value;
+      }
     });
 
     const mergedData = {
       ...zoneFormData,
       ...formDataObject,
     };
+
+    console.log(mergedData);
 
     try {
       const res = await axios.post(
@@ -58,7 +67,7 @@ const ZoneInformationAdvance = () => {
 
   const fields = [
     {
-      name: "cctvipAddress",
+      name: "cctvIPAddress",
       label: "Cctv IPAddress",
       type: "text",
       required: true,
@@ -89,6 +98,13 @@ const ZoneInformationAdvance = () => {
       name: "parity",
       label: "Parity",
       type: "text",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "dataBits",
+      label: "Data Bits",
+      type: "number",
       required: true,
       maxLength: 20,
     },
