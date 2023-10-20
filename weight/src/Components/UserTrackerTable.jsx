@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import Avatar from "@mui/material/Avatar";
 import priyanka from "../assets/priyanka.jpg";
 import naruto from "../assets/naruto.jpg";
@@ -85,7 +85,7 @@ const columns = [
     renderCell: (cellValues) => {
         return (
           <button>
-            <FileDownloadOutlinedIcon style={{ color: "#6759FF" }} />
+            <BorderColorOutlinedIcon style={{ color: "#6759FF" }} />
           </button>
         );
       },

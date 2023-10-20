@@ -27,60 +27,53 @@ const UserInformationGeneral = () => {
 
   const fields = [
     {
-      name: "usernam",
-      label: "Username",
+      name: "name",
+      label: "Name",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-        name: "usernam",
-        label: "Username",
-        type: "text",
-        required: true,
-        maxLength: 20,
-      },
-      {
-        name: "usernam",
-        label: "Username",
-        type: "text",
-        required: true,
-        maxLength: 20,
-      },
-      {
-        name: "usernam",
-        label: "Username",
-        type: "text",
-        required: true,
-        maxLength: 20,
-      },
-      {
-        name: "usernam",
-        label: "Username",
-        type: "text",
-        required: true,
-        maxLength: 20,
-      },
-    {
-      name: "password",
-      label: "Password",
-      type: "password",
+      name: "email",
+      label: "Email",
+      type: "email",
       required: true,
-      maxLength: 50,
+      maxLength: 20,
+    },
+    {
+      name: "mobileNo",
+      label: "Mobile No.",
+      type: "number",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "city",
+      label: "City",
+      type: "text",
+      required: true,
+      maxLength: 20,
+    },
+    {
+      name: "userType",
+      label: "User Type",
+      type: "text",
+      required: true,
+      maxLength: 20,
     },
   ];
 
   return (
-        <main className="flex flex-row justify-center items-center ">
-          <img src={glass} alt={"magnifying glass"} />
-          <ReusableForm
-            onSubmit={onSubmit}
-            fields={fields}
-            errors={errors}
-            showCancel={true}
-            submitButtonLabel={"Proceed"}
-          />
-        </main>
+    <main className="flex flex-row justify-center items-center ">
+      <img src={glass} alt={"magnifying glass"} />
+      <ReusableForm
+        onSubmit={onSubmit}
+        fields={fields}
+        errors={errors}
+        showCancel={true}
+        submitButtonLabel={"Proceed"}
+      />
+    </main>
   );
 };
 
