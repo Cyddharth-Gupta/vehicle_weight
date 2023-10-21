@@ -3,6 +3,7 @@ import truck from "../assets/loginpagetruck.svg";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import { logInUser } from "../redux_store/slice/userInfoSlice";
+import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
 import { useDispatch } from "react-redux";
 
 const LoginPage = ({onLogin}) => {
@@ -23,8 +24,8 @@ const LoginPage = ({onLogin}) => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-
     dispatch(logInUser(formDataObject));
+    dispatch(getUserLoginData(formDataObject));
     onLogin();
     const form = event.target;
     form.reset();

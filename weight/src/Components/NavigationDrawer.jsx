@@ -14,7 +14,7 @@ import axios from "axios";
 
 const NavigationDrawer = () => {
   const user = useSelector(userData);
-  console.log(user?.data.userData.fullName);
+  console.log(user?.data?.userData?.fullName);
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
@@ -41,7 +41,7 @@ const NavigationDrawer = () => {
           className="w-20 h-20 rounded-full m-3"
         />
         <span>
-          <h4>{user?.data.userData.fullName}</h4>
+          <h4>{user?.data?.userData?.fullName}</h4>
           <p className="text-xs lg:text-md ">priyankachopra@gmail.com</p>
         </span>
       </div>

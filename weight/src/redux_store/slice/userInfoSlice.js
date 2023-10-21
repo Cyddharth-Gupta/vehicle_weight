@@ -17,15 +17,20 @@ export const logInUser = createAsyncThunk(
 );
 
 const initialState = {
-  loading: false,
-  userData: null,
+  userInfoLoading: false,
+  userData: [],
+  userLoginData: [],
   error: null,
 };
 
 export const userInfoSlice = createSlice({
   name: "userInfo",
   initialState,
-  reducer: {},
+  reducers: {
+    getUserLoginData: (state, action) => {
+      state.userLoginData = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(logInUser.pending, (state) => {
       state.loading = true;
@@ -42,4 +47,7 @@ export const userInfoSlice = createSlice({
 });
 
 export default userInfoSlice.reducer;
+export const userInfoLoading = (state) => state.userInfo.userInfoLoading;
 export const userData = (state) => state.userInfo.userData;
+export const userLoginData = (state) => state.userInfo.userLoginData;
+export const { getUserLoginData } = userInfoSlice.actions;

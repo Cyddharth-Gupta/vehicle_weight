@@ -8,7 +8,13 @@ import NavigationDrawer from "../Components/NavigationDrawer";
 import RFIDtruck from "../assets/RFIDtruck.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logInUser } from "../redux_store/slice/userInfoSlice";
+import { userData } from "../redux_store/slice/userInfoSlice";
+import { fetchWeightInfo } from "../redux_store/slice/weightInfoSlice";
+import { WeightInfoData } from "../redux_store/slice/weightInfoSlice";
+import { userLoginData } from "../redux_store/slice/userInfoSlice";
+import { userInfoLoading } from "../redux_store/slice/userInfoSlice";
 
 const WeighingInformation = () => {
   const {
@@ -17,6 +23,30 @@ const WeighingInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(userLoginData);
+  console.log(user);
+
+  React.useEffect(() => {
+    dispatch(logInUser(user));
+    console.log("called");
+  },[])
+
+  const oneUserData = useSelector(userData);
+  console.log(oneUserData);
+
+  React.useEffect(() => {
+    dispatch(fetchWeightInfo({userId: oneUserData?.data?.userData?.userId, employeeType: oneUserData?.data?.userData?.employeeType}));
+    console.log("called2");
+  }, [oneUserData]);
+ 
+  const weightInfo = useSelector(WeightInfoData);
+  console.log(weightInfo);
+
+  console.log(weightInfo?.zone?.zoneId);
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -35,10 +65,19 @@ const WeighingInformation = () => {
       }
     });
 
+    const newFormDataObject = {
+      ...formDataObject,
+      userId: weightInfo[0]?.userId,
+      zoneId: weightInfo[0]?.zone?.zoneId,
+      zoneName: weightInfo[0]?.zone?.name,
+      employeeName: weightInfo[0]?.fullName,
+    };
+
+    console.log(newFormDataObject);
     try {
       const res = await axios.post(
         "http://[::1]:3000/weighing-data",
-        JSON.stringify(formDataObject),
+        JSON.stringify(newFormDataObject),
         {
           headers: {
             "Content-Type": "application/json",
@@ -47,7 +86,7 @@ const WeighingInformation = () => {
       );
       const form = event.target;
       form.reset();
-      window.alert("Form Submitted Successfully!")
+      window.alert("Form Submitted Successfully!");
       console.log(res.data);
       return res.data;
     } catch (error) {
@@ -144,13 +183,13 @@ const WeighingInformation = () => {
       required: true,
       maxLength: 20,
     },
-    {
-      name: "userId",
-      label: "User ID",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
+    // {
+    //   name: "userId",
+    //   label: "User ID",
+    //   type: "text",
+    //   required: true,
+    //   maxLength: 50,
+    // },
     {
       name: "vehicleId",
       label: "Vehicle ID",
@@ -158,20 +197,20 @@ const WeighingInformation = () => {
       required: true,
       maxLength: 50,
     },
-    {
-      name: "zoneId",
-      label: "Zone ID",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
-    {
-      name: "zoneName",
-      label: "Zone Name",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
+    // {
+    //   name: "zoneId",
+    //   label: "Zone ID",
+    //   type: "text",
+    //   required: true,
+    //   maxLength: 50,
+    // },
+    // {
+    //   name: "zoneName",
+    //   label: "Zone Name",
+    //   type: "text",
+    //   required: true,
+    //   maxLength: 50,
+    // },
     {
       name: "address",
       label: "Address",
@@ -193,13 +232,13 @@ const WeighingInformation = () => {
       required: true,
       maxLength: 50,
     },
-    {
-      name: "employeeName",
-      label: "Employee Name",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
+    // {
+    //   name: "employeeName",
+    //   label: "Employee Name",
+    //   type: "text",
+    //   required: true,
+    //   maxLength: 50,
+    // },
   ];
 
   const customClass = "grid w-2/3 grid-cols-2 gap-4 mx-5 ";
@@ -213,11 +252,11 @@ const WeighingInformation = () => {
       <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
         <div className="flex flex-row">
           <button>
-            <Link to = "/WeighingTracker">
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className=" text-4xl p-5 font-medium"
-            />
+            <Link to="/WeighingTracker">
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className=" text-4xl p-5 font-medium"
+              />
             </Link>
           </button>
           <h1 className="text-4xl p-5 font-medium"> Weighing Information </h1>
