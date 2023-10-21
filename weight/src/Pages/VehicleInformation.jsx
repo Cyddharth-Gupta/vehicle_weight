@@ -97,7 +97,7 @@ const VehicleInformation = () => {
           <h1 className="text-4xl p-5 font-medium"> Vehicle Information</h1>
         </div>
 
-        <main className="flex flex-row justify-normal ">
+        <main className="flex flex-row justify-normal mt-64">
           <img src={truck} alt="truck" className="-ml-70" />
           <ReusableForm
             onSubmit={onSubmit}
@@ -110,6 +110,7 @@ const VehicleInformation = () => {
             customButtonClass={customButtonClass}
             customSelectClass={customSelectClass}
             customClass={customClass}
+
           />
         </main>
       </div>
