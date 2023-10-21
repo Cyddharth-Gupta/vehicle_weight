@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LoginPage from './Pages/LoginPage';
 import ZoneTracker from './Pages/ZoneTracker';
+import WeighingTracker from './Pages/WeighingTracker';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,7 +14,7 @@ const App = () => {
     <div>
       {isLoggedIn ? (
         <>
-         <ZoneTracker />
+         <WeighingTracker />
         </>
       ) : (
         <LoginPage onLogin={handleLogin} />
