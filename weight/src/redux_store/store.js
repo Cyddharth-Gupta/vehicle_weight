@@ -6,6 +6,7 @@ import {userTrackerSlice} from "./slice/userTrackerSlice.js"
 import {vehicleTrackerSlice} from "./slice/vehicleTrackerSlice.js"
 import {reportSlice} from "./slice/reportSlice.js"
 import {weightInfoSlice} from "./slice/weightInfoSlice.js"
+import {recieptUrlSlice} from "./slice/recieptUrlSlice.js"
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     vehicleTracker: vehicleTrackerSlice.reducer,
     report: reportSlice.reducer,
     weightInfo: weightInfoSlice.reducer,
+    recieptUrl: recieptUrlSlice.reducer,
   },
 });

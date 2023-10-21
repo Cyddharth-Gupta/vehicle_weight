@@ -25,7 +25,6 @@ const VehicleInformation = () => {
       // Parse the value as a number if it's the 'tareWeight' field
       formDataObject[key] = key === "tareWeight" ? parseFloat(value) : value;
     });
-console.log(formDataObject);
     try {
       const res = await axios.post(
         "http://[::1]:3000/vehicles",
@@ -44,10 +43,6 @@ console.log(formDataObject);
     } catch (error) {
       console.log(error);
     }
-
-    // console.log(formDataObject);
-    // const form = event.target;
-    // form.reset();
   };
 
   const fields = [

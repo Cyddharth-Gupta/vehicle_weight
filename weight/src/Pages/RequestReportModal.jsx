@@ -6,6 +6,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import axios from "axios";
+import { fetchRecieptUrl } from "../redux_store/slice/recieptUrlSlice";
+import { recieptUrlData } from "../redux_store/slice/recieptUrlSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   const {
@@ -19,7 +23,52 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   const customSelectClass = "w-full min-w-full my-4";
   const customClass = "m-4";
   const customButtonClass = "flex ml-64 rounded-md";
+
+  const dispatch = useDispatch();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
+
+    console.log(formDataObject);
+    try {
+      await dispatch(fetchRecieptUrl(formDataObject));
+    } catch (error) {
+      console.log(error);
+    }
+
+  //   try {
+  //     const res = await axios.post(
+  //       "http://[::1]:3000/insight-reports",
+  //       JSON.stringify(formDataObject),
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const form = event.target;
+  //     form.reset();
+  //     window.alert("Form Submitted Successfully!");
+  //     console.log(res.data);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+   };
+
   const fields = [
+    {
+      name: "reportName",
+      label: "Report Name",
+      type: "string",
+      required: true,
+    },
     {
       name: "vehicletype",
       label: "Vehicle Type",
@@ -57,6 +106,7 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
             <ReusableForm
               fields={fields}
               errors={errors}
+              onSubmit={onSubmit}
               customInputClass={customInputClass}
               submitButtonLabel={"Confirm"}
               customClass={customClass}
