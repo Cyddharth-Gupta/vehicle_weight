@@ -1,13 +1,16 @@
 import React from "react";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import axios from "axios";
 import { fetchRecieptUrl } from "../redux_store/slice/recieptUrlSlice";
+import { logInUser } from "../redux_store/slice/userInfoSlice";
+import { userLoginData } from "../redux_store/slice/userInfoSlice";
+import { userData } from "../redux_store/slice/userInfoSlice";
 import { recieptUrlData } from "../redux_store/slice/recieptUrlSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -27,6 +30,92 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   const [formDataObject, setFormDataObject] = React.useState({});
 
   const dispatch = useDispatch();
+  const userLoggedInData = useSelector(userLoginData);
+  console.log(userLoggedInData);
+  const userIdData = useSelector(userData);
+  console.log(userIdData);
+
+  React.useEffect(() => {
+    dispatch(logInUser(userLoggedInData));
+  }, []);
+
+  const recieptUrl = useSelector(recieptUrlData);
+  console.log(recieptUrl);
+  const jsonString = JSON.stringify(recieptUrl);
+  const base64String = btoa(jsonString);
+  //console.log(base64String);
+
+  const formatFromDate = (inputDate) => {
+    const parts = inputDate.split("-"); // Split the date into parts
+    const month = parts[1];
+    const day = parts[2];
+    const year = parts[0];
+
+    // Create a new Date object with time set to 00:00:00.000
+    const dateObject = new Date(Date.UTC(year, month - 1, day));
+    const isoString = dateObject.toISOString();
+    return isoString;
+  };
+
+  const formatToDate = (inputDate) => {
+    const parts = inputDate.split("-"); // Split the date into parts
+    const month = parts[1];
+    const day = parts[2];
+    const year = parts[0];
+
+    // Create a new Date object with time set to 23:59:59.999
+    const dateObject = new Date(Date.UTC(year, month - 1, day));
+    dateObject.setUTCHours(23, 59, 59, 999);
+    const isoString = dateObject.toISOString();
+    return isoString;
+  };
+
+  const ImageUpload = async (base64String, newFormDataObject) => {
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/file/upload",
+        JSON.stringify({
+          fileName: newFormDataObject.reportName,
+          fileType: "image",
+          fileExtention: "pdf",
+          fileData: base64String,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const postReport = async (newFormDataObject, data) => {
+    const finalFormDataObject = {
+      ...newFormDataObject,
+      reportUrl: data?.fileUrl,
+      userId: userIdData?.data.userId,
+    };
+    console.log(finalFormDataObject);
+    try {
+      const res = await axios.post(
+        "http://[::1]:3000/insight-reports",
+        JSON.stringify(finalFormDataObject),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -36,32 +125,27 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-
     console.log(formDataObject);
+    const newFormDataObject = {
+      ...formDataObject,
+      fromDate: formatFromDate(formDataObject.fromDate),
+      toDate: formatToDate(formDataObject.toDate),
+    };
+
+    //console.log(newFormDataObject);
     try {
-      await dispatch(fetchRecieptUrl(formDataObject));
+      await dispatch(fetchRecieptUrl(newFormDataObject));
+      const data = await ImageUpload(base64String, newFormDataObject);
+      const res = await postReport(newFormDataObject, data);
+      console.log(newFormDataObject);
+      const form = event.target;
+      form.reset();
+      window.alert("Form Submitted Successfully!");
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
-  //   try {
-  //     const res = await axios.post(
-  //       "http://[::1]:3000/insight-reports",
-  //       JSON.stringify(formDataObject),
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const form = event.target;
-  //     form.reset();
-  //     window.alert("Form Submitted Successfully!");
-  //     console.log(res.data);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-   };
+  };
 
   const fields = [
     {

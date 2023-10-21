@@ -84,7 +84,7 @@ const columns = [
     align: "center",
     renderCell: (cellValues) => {
         return (
-          <a href={cellValues.row.reciept} target="_blank" download="reciept.png">
+          <a href={cellValues.row.reciept}>
             <FileDownloadOutlinedIcon style={{ color: "#6759FF" }} />
           </a>
         );

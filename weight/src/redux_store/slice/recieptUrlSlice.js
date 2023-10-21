@@ -1,62 +1,65 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchRecieptUrl = createAsyncThunk("recieptUrl/fetchRecieptUrl", async ({createdFrom, createdTo, VehicleType }) => {
+export const fetchRecieptUrl = createAsyncThunk(
+  "recieptUrl/fetchRecieptUrl",
+  async ({ fromDate, toDate, VehicleType }) => {
     try {
-       const res = await axios.get("http://[::1]:3000/weighing-data?", {
-         params: {
-           filter: JSON.stringify({
-             offset: 0,
-             limit: 100,
-             skip: 0,
-             order: "createdAt desc",
-             where: {
-               and: [
-                 { createdAt: { gte: createdFrom } },
-                 { createdAt: { lte: createdTo } },
-                 { vehicleType: VehicleType },
-               ],
-             },
-             include: [
-               {
-                 relation: "vehicle",
-                 scope: {
-                   offset: 0,
-                   skip: 0,
-                   order: "desc",
-                   fields: {},
-                   include: [],
-                 },
-               },
-               {
-                 relation: "user",
-                 scope: {
-                   offset: 0,
-                   skip: 0,
-                   order: "desc",
-                   fields: {},
-                   include: [],
-                 },
-               },
-               {
-                 relation: "zone",
-                 scope: {
-                   offset: 0,
-                   skip: 0,
-                   order: "desc",
-                   fields: {},
-                   include: [],
-                 },
-               },
-             ],
-           }),
-         },
-       }); 
-       return res.data;
+      const res = await axios.get("http://[::1]:3000/weighing-data?", {
+        params: {
+          filter: JSON.stringify({
+            offset: 0,
+            limit: 100,
+            skip: 0,
+            order: "createdAt desc",
+            where: {
+              and: [
+                { createdAt: { gte: fromDate } },
+                { createdAt: { lte: toDate } },
+                { vehicleType: VehicleType },
+              ],
+            },
+            include: [
+              {
+                relation: "vehicle",
+                scope: {
+                  offset: 0,
+                  skip: 0,
+                  order: "desc",
+                  fields: {},
+                  include: [],
+                },
+              },
+              {
+                relation: "user",
+                scope: {
+                  offset: 0,
+                  skip: 0,
+                  order: "desc",
+                  fields: {},
+                  include: [],
+                },
+              },
+              {
+                relation: "zone",
+                scope: {
+                  offset: 0,
+                  skip: 0,
+                  order: "desc",
+                  fields: {},
+                  include: [],
+                },
+              },
+            ],
+          }),
+        },
+      });
+      return res.data;
     } catch (error) {
-       console.log(error); 
+      console.log(error);
     }
-});
+  }
+);
 
 const initialState = {
     loading: false,
