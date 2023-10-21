@@ -84,124 +84,14 @@ const columns = [
     align: "center",
     renderCell: (cellValues) => {
         return (
-          <button>
+          <a href={cellValues.row.reciept} target="_blank" download="reciept.png">
             <FileDownloadOutlinedIcon style={{ color: "#6759FF" }} />
-          </button>
+          </a>
         );
       },
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    avatar: priyanka,
-    name: "Priyanka",
-    zone: "East",
-    employeeid: 35,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Inactive",
-    actions: "some actions",
-  },
-  {
-    id: 2,
-    avatar: naruto,
-    name: "John Cena",
-    managedby: "Lannister",
-    zone: "East",
-    employeeid: 42,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-  {
-    id: 3,
-    avatar: sakura,
-    name: "Shah rukh khan",
-    managedby: "Lannister",
-    zone: "East",
-    employeeid: 45,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Inactive",
-    actions: "some actions",
-  },
-  {
-    id: 4,
-    avatar: sakura,
-    name: "Siddharth Malhotra",
-    managedby: "Stark",
-    zone: "West",
-    age: 16,
-    employeeid: 68,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Inactive",
-    actions: "some actions",
-  },
-  {
-    id: 5,
-    avatar: naruto,
-    name: "Ronaldo",
-    managedby: "Targaryen",
-    zone: "West",
-    employeeid: 268,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-  {
-    id: 6,
-    avatar: sakura,
-    name: "Christopher Nolan",
-    managedby: "Melisandre",
-    zone: "West",
-    employeeid: 150,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-  {
-    id: 7,
-    avatar: priyanka,
-    name: "Spider Man",
-    managedby: "Clifford",
-    zone: "West",
-    employeeid: 44,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-  {
-    id: 8,
-    avatar: naruto,
-    name: "Minato",
-    managedby: "Frances",
-    zone: "East",
-    employeeid: 36,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-  {
-    id: 9,
-    avatar: sakura,
-    name: "Kushina",
-    managedby: "Roxie",
-    zone: "West",
-    employeeid: 65,
-    dob: "3/5/10" ,
-    new: "New",
-    status: "Active",
-    actions: "some actions",
-  },
-];
 
 export default function DataTable() {
   const dispatch = useDispatch();
@@ -230,6 +120,7 @@ export default function DataTable() {
     new: "new",
     status: item?.user.status,
     actions: item?.user.actions,
+    reciept: item?.reportUrl,
   }));
 
   return (
