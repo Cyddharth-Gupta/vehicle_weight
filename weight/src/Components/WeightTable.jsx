@@ -4,6 +4,7 @@ import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import { fetchWeightTracker } from "../redux_store/slice/weightTrackerSlice";
 import { weightTrackerData } from "../redux_store/slice/weightTrackerSlice";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 const WeightTable = () => {
   const columns = [
@@ -77,8 +78,13 @@ const WeightTable = () => {
       headerAlign: "center",
       align: "center",
       renderCell: (cellValues) => {
+        console.log(cellValues.row.receipt);
         return (
-          <a href={cellValues.row.receipt} download>
+          <a
+            href={cellValues.row.receipt}
+            target="_blank"
+            download="reciept.pdf"
+          >
             <ReceiptLongOutlinedIcon style={{ color: "#6759FF" }} />
           </a>
         );
