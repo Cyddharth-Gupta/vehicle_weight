@@ -210,13 +210,32 @@ export default function DataTable() {
     dispatch(fetchReport());
   },[]);
 
-  //const reports = useSelector(reportData);
+  const reports = useSelector(reportData);
 
-  //const mappedData = reports.map((item) => ({}));
+   const formatDateToDDMMYYYY = (date) => {
+     const day = date.getDate().toString().padStart(2, "0");
+     const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+     const year = date.getFullYear();
+
+     return `${day}/${month}/${year}`;
+   };
+
+  const mappedData = reports.map((item) => ({
+    id: item.userId,
+    avatar: "",
+    name: item?.user.username,
+    zone: "west",
+    employeeid: item?.user.employeeId,
+    dob: formatDateToDDMMYYYY(new Date(item?.user.dateOfBirth)),
+    new: "new",
+    status: item?.user.status,
+    actions: item?.user.actions,
+  }));
+
   return (
     <div style={{ height: "100%" }} className="mx-20">
       <DataGrid
-        rows={rows}
+        rows={mappedData}
         rowHeight={80}
         columns={columns}
         initialState={{

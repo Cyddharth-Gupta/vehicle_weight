@@ -8,13 +8,13 @@ import {reportSlice} from "./slice/reportSlice.js"
 import {weightInfoSlice} from "./slice/weightInfoSlice.js"
 
 export const store = configureStore({
-    reducer: {
-        userInfo: userInfoSlice.reducer,
-        zoneTracker: zoneTrackerSlice.reducer,
-        weightTracker: weightTrackerSlice.reducer,
-        userTracker: userTrackerSlice.reducer,
-        vehicleTracker: vehicleTrackerSlice.reducer,
-        reportSlice: reportSlice.reducer,
-        weightInfo: weightInfoSlice.reducer,
-    }
-})
+  reducer: {
+    userInfo: userInfoSlice.reducer,
+    zoneTracker: zoneTrackerSlice.reducer,
+    weightTracker: weightTrackerSlice.reducer,
+    userTracker: userTrackerSlice.reducer,
+    vehicleTracker: vehicleTrackerSlice.reducer,
+    report: reportSlice.reducer,
+    weightInfo: weightInfoSlice.reducer,
+  },
+});
