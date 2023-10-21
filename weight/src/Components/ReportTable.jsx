@@ -5,6 +5,9 @@ import Avatar from "@mui/material/Avatar";
 import priyanka from "../assets/priyanka.jpg";
 import naruto from "../assets/naruto.jpg";
 import sakura from "../assets/sakura.jpg";
+import { fetchReport } from "../redux_store/slice/reportSlice";
+import { reportData } from "../redux_store/slice/reportSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const columns = [
@@ -201,6 +204,15 @@ const rows = [
 ];
 
 export default function DataTable() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchReport());
+  },[]);
+
+  //const reports = useSelector(reportData);
+
+  //const mappedData = reports.map((item) => ({}));
   return (
     <div style={{ height: "100%" }} className="mx-20">
       <DataGrid
