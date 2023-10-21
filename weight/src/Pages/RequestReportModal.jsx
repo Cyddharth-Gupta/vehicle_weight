@@ -24,6 +24,8 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   const customClass = "m-4";
   const customButtonClass = "flex ml-64 rounded-md";
 
+  const [formDataObject, setFormDataObject] = React.useState({});
+
   const dispatch = useDispatch();
 
   const onSubmit = async (event) => {
@@ -41,7 +43,6 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     } catch (error) {
       console.log(error);
     }
-
   //   try {
   //     const res = await axios.post(
   //       "http://[::1]:3000/insight-reports",
@@ -63,6 +64,18 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
    };
 
   const fields = [
+    {
+      name: "fromDate",
+      label: "From Date",
+      type: "date",
+      required: true,
+    },
+    {
+      name: "toDate",
+      label: "To Date",
+      type: "date",
+      required: true,
+    },
     {
       name: "reportName",
       label: "Report Name",
@@ -90,19 +103,25 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
               <CloseIcon />
             </button>
             <h1 className="text-3xl p-3 mb-4">Request Report</h1>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="flex flex-row items-center justify-center">
                 <div>
                   <h2 className="mb-2">From</h2>
-                  <DatePicker/>
+                  <DatePicker
+                  value={formDataObject.fromDate}
+                  onChange={(date) => setFormDataObject({ ...formDataObject, fromDate: date })}
+                  />
                 </div>
                 <HorizontalRuleIcon className="mx-4 mt-5" /> 
                 <div>
                   <h2 className="mb-2">To</h2>
-                  <DatePicker/>
+                  <DatePicker
+                  value={formDataObject.toDate}
+                  onChange={(date) => setFormDataObject({ ...formDataObject, toDate: date })}
+                />
                 </div>
               </div>
-            </LocalizationProvider>
+            </LocalizationProvider> */}
             <ReusableForm
               fields={fields}
               errors={errors}
