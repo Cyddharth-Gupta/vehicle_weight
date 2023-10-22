@@ -21,6 +21,46 @@ import {
 } from '@loopback/rest';
 import {User} from '../models';
 import {UserRepository, UserSessionRepository} from '../repositories';
+const express = require('express')();
+const server = require('http').createServer(express);
+
+const { SerialPort } = require('serialport')
+
+async function emitWeighingData(io:any, zoneInfo:any){
+  const serialPort = new SerialPort({ 
+      path : zoneInfo.weighingPort,
+      baudRate: zoneInfo.baudRate,
+      dataBits:zoneInfo.dataBits,
+      stopBits:zoneInfo.stopBits,
+      flowControl: zoneInfo.flowControl,
+      parity:zoneInfo.parity,
+      autoOpen : true
+  })
+
+  console.log("SerialPort is open",serialPort.isOpen);
+ //console.log("Entered34");
+  serialPort.on('open',function(){
+      console.log("Open");
+      // serialPort.write(0x05); 
+
+  })
+  serialPort.on('data', function(data:any) {
+      // const b = Buffer.from(data);
+      // let bufferValue = b.toString('utf-8').replace('\x02','').split(' ').join('');
+      let bufferValue = '7800';
+      if(!isNaN(parseInt(bufferValue))){
+          let reading = parseFloat(bufferValue)
+          if(!isNaN(reading)){
+               io.emit('weighing-bridge-data', { data : 7800 });
+          }
+      }
+  });
+
+  serialPort.on('error', function(error:any){
+    console.log('error', error);
+  })
+  
+};
 
 export class UserController {
   constructor(
@@ -167,7 +207,17 @@ export class UserController {
       where: {
         username: payload.username,
         password: payload.password
-      }
+      },
+      include: [{
+        "relation": "zone",
+        "scope": {
+          "offset": 0,
+          "skip": 0,
+          "order": ["createdAt desc"],
+          "fields": {},
+          "include": []
+        }
+      }]
     });
 
     if (user) {
@@ -175,6 +225,22 @@ export class UserController {
       await this.userSessionRepository.create({
         userId: user.userId,
         token: token
+      });
+
+      const io = require('socket.io')(server, {
+        cors: {
+          origin: '*',
+        }
+      });
+      server.listen(3001);
+    
+      io.on('connection', function (socket: any) {
+        console.log('a user connected');
+        socket.on('disconnect', function () {
+          console.log('user disconnected');
+        });
+
+        emitWeighingData(io, user.zone);
       });
 
       return {

@@ -14,6 +14,7 @@ export declare class WeighingData extends Entity {
     vehicleType: string;
     material?: string;
     receiptUrl: string;
+    barcodeUrl: string;
     zoneName: string;
     address: string;
     city: string;
