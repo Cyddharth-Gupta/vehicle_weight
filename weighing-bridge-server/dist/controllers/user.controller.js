@@ -11,6 +11,12 @@ const repositories_1 = require("../repositories");
 const express = require('express')();
 const server = require('http').createServer(express);
 const { SerialPort } = require('serialport');
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    }
+});
+server.listen(3001);
 async function emitWeighingData(io, zoneInfo) {
     const serialPort = new SerialPort({
         path: zoneInfo.weighingPort,
@@ -95,12 +101,6 @@ let UserController = exports.UserController = class UserController {
                 userId: user.userId,
                 token: token
             });
-            const io = require('socket.io')(server, {
-                cors: {
-                    origin: '*',
-                }
-            });
-            server.listen(3001);
             io.on('connection', function (socket) {
                 console.log('a user connected');
                 socket.on('disconnect', function () {
