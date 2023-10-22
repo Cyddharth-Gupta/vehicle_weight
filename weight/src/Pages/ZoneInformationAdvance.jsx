@@ -6,6 +6,7 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
@@ -129,9 +130,10 @@ const ZoneInformationAdvance = () => {
 
   const customInputClass = "w-96";
   const customButtonClass = "m-3";
+  const customClass = "mt-10";
   return (
-    <main className="flex flex-row justify-normal">
-      <img src={informationTruck} alt={"truck"} />
+    <main className="flex flex-row items-center justify-center">
+      <img src={informationTruck} alt={"truck"} className="h-auto w-auto"/>
       <ReusableForm
         onSubmit={onSubmit}
         fields={fields}
@@ -140,14 +142,7 @@ const ZoneInformationAdvance = () => {
         submitButtonLabel={"Submit"}
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
-        validation={{
-          cctvipAddress: {
-            pattern: {
-              value: /^(\d{1,3}\.){3}\d{1,3}$/,
-              message: "Invalid IP address format",
-            },
-          },
-        }}
+        customClass={customClass}
       />
     </main>
   );

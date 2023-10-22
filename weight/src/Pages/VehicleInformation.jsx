@@ -1,4 +1,5 @@
 import React from "react";
+import { useSnackbar } from "notistack";
 import truck from "../assets/vehicleinformationtruck.svg";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
@@ -82,11 +83,11 @@ const VehicleInformation = () => {
   const customSelectClass = "mx-14 mb-10";
   const customLabelClass = "mx-14 ";
   const customButtonClass = "px-28 my-5";
-  const customClass = "ml-60";
+  const customClass = "";
   return (
     <div className="flex flex-row">
       <NavigationDrawer />
-      <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
+      <div className="bg-[#F0F0F0] w-full min-h-screen flex flex-col">
         <div className="flex flex-row">
           <button>
             <Link to ="/VehicleTracker">
@@ -99,7 +100,7 @@ const VehicleInformation = () => {
           <h1 className="text-4xl p-5 font-medium"> Vehicle Information</h1>
         </div>
 
-        <main className="flex flex-row justify-normal mt-64">
+        <main className="flex flex-row justify-normal ">
           <img src={truck} alt="truck" className="-ml-70" />
           <ReusableForm
             onSubmit={onSubmit}
