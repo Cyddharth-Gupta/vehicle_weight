@@ -15,6 +15,7 @@ import { recieptUrlData } from "../redux_store/slice/recieptUrlSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -91,9 +92,11 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
         }
       );
       console.log(res.data);
+      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
       console.log(error);
+      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
   };
 

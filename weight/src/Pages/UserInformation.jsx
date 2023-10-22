@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import TabsUserInformation from "../Components/TabsUserInformation";
 import { Link } from "react-router-dom";
 
+
 const UserInformation = () => {
   const {
     register,
