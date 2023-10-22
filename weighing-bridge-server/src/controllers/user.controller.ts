@@ -24,7 +24,14 @@ import {UserRepository, UserSessionRepository} from '../repositories';
 const express = require('express')();
 const server = require('http').createServer(express);
 
-const { SerialPort } = require('serialport')
+const { SerialPort } = require('serialport');
+
+ const io = require('socket.io')(server, {
+        cors: {
+          origin: '*',
+        }
+      });
+      server.listen(3001);
 
 async function emitWeighingData(io:any, zoneInfo:any){
   const serialPort = new SerialPort({ 
@@ -226,13 +233,6 @@ export class UserController {
         userId: user.userId,
         token: token
       });
-
-      const io = require('socket.io')(server, {
-        cors: {
-          origin: '*',
-        }
-      });
-      server.listen(3001);
     
       io.on('connection', function (socket: any) {
         console.log('a user connected');
