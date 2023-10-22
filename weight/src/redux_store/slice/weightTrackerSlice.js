@@ -4,11 +4,8 @@ import axios from "axios";
 export const fetchWeightTracker = createAsyncThunk(
   "weightTracker/fetchWeightTracker",
   async ({ zoneId, employeeType }) => {
-
-    const empType = employeeType === "employee" ? "employee" : "admin";
-    console.log(empType);
-
     try {
+      console.log(employeeType);
       const res = await axios.get("http://[::1]:3000/weighing-data", {
         params: {
           filter: JSON.stringify({
@@ -45,7 +42,7 @@ export const fetchWeightTracker = createAsyncThunk(
                   order: "desc",
                   fields: {},
                   where: {
-                    userType: empType,
+                    userType: employeeType,
                     zoneId: zoneId,
                   },
                   include: [],
@@ -63,7 +60,7 @@ export const fetchWeightTracker = createAsyncThunk(
 );
 
 const initialState = {
-  loading: false,
+  weightTrackerloading: false,
   weightTrackerData: [],
   error: null,
 };
@@ -74,14 +71,14 @@ export const weightTrackerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchWeightTracker.pending, (state) => {
-      state.loading = true;
+      state.weightTrackerloading = true;
     });
     builder.addCase(fetchWeightTracker.fulfilled, (state, action) => {
-      state.loading = false;
+      state.weightTrackerloading = false;
       state.weightTrackerData = action.payload;
     });
     builder.addCase(fetchWeightTracker.rejected, (state, action) => {
-      state.loading = false;
+      state.weightTrackerloading = false;
       state.error = action.error.message;
     });
   },
@@ -90,3 +87,4 @@ export const weightTrackerSlice = createSlice({
 export default weightTrackerSlice.reducer;
 export const weightTrackerData = (state) =>
   state.weightTracker.weightTrackerData;
+export const weightTrackerLoading = (state) => state.weightTracker.loading;

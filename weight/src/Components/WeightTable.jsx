@@ -4,6 +4,7 @@ import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import { fetchWeightTracker } from "../redux_store/slice/weightTrackerSlice";
 import { weightTrackerData } from "../redux_store/slice/weightTrackerSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { userData } from "../redux_store/slice/userInfoSlice";
 import axios from "axios";
 
 const WeightTable = () => {
@@ -93,21 +94,26 @@ const WeightTable = () => {
 
   const dispatch = useDispatch();
 
+  const user = useSelector(userData);
+  //localStorage.setItem("userIdData", JSON.stringify(user));
+
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
   console.log(storedUserData);
   console.log(storedUserData?.data?.userData?.userType);
+  const weightData = useSelector(weightTrackerData) || [];
 
   React.useEffect(() => {
-    dispatch(
-      fetchWeightTracker({
-        zoneId: storedUserData?.data?.userData?.zone?.zoneId,
-        employeeType: storedUserData?.data?.userData?.userType,
-      })
-    );
+    if (storedUserData && storedUserData?.data?.userData?.userType) {
+      dispatch(
+        fetchWeightTracker({
+          zoneId: storedUserData?.data?.userData?.zone?.zoneId,
+          employeeType: storedUserData?.data?.userData?.userType,
+        })
+      );
+      console.log("local storage", storedUserData);
+    }
   }, []);
-
-  const weightData = useSelector(weightTrackerData);
 
   const formatDateToDDMMYYYY = (date) => {
     const day = date.getDate().toString().padStart(2, "0");

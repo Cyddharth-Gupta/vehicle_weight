@@ -17,8 +17,7 @@ const NavigationDrawer = () => {
   console.log(user);
   localStorage.setItem("userIdData", JSON.stringify(user));
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
-  
-  
+
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
