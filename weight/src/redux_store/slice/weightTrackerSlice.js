@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const fetchWeightTracker = createAsyncThunk(
   "weightTracker/fetchWeightTracker",
-  async ({ zoneId, employeeType }) => {
+  async () => {
     try {
-      console.log(employeeType);
+      //console.log(employeeType);
       const res = await axios.get("http://[::1]:3000/weighing-data", {
         params: {
           filter: JSON.stringify({
@@ -41,10 +41,10 @@ export const fetchWeightTracker = createAsyncThunk(
                   skip: 0,
                   order: "desc",
                   fields: {},
-                  where: {
-                    userType: employeeType,
-                    zoneId: zoneId,
-                  },
+                  // where: {
+                  //   userType: employeeType,
+                  //   zoneId: zoneId,
+                  // },
                   include: [],
                 },
               },

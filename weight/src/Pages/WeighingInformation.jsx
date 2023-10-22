@@ -11,6 +11,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWeightInfo } from "../redux_store/slice/weightInfoSlice";
 import { WeightInfoData } from "../redux_store/slice/weightInfoSlice";
+import { io } from "socket.io-client";
 
 const WeighingInformation = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -24,13 +25,23 @@ const WeighingInformation = () => {
   const dispatch = useDispatch();
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
-  // React.useEffect(() => {
-  //   dispatch(logInUser(user));
-  //   console.log("called");
-  // }, []);
+  const [grossWeight, setGrossWeight] = React.useState("");
 
-  // const oneUserData = useSelector(userData);
-  // console.log(oneUserData);
+  const socket = io("http://localhost:3001");
+
+  React.useEffect(() => {
+    // Create a socket connection to your server
+
+    // Listen for events from the server
+    socket.on("grossWeightData", (data) => {
+      setGrossWeight(data); // Update the state with the received gross weight data
+    });
+
+    // Clean up the socket connection when the component unmounts
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   React.useEffect(() => {
     dispatch(
@@ -47,10 +58,10 @@ const WeighingInformation = () => {
 
   console.log(weightInfo?.zone?.zoneId);
 
-   const [tareWeight, setTareWeight] = React.useState("");
+  const [tareWeight, setTareWeight] = React.useState("");
 
   const onVehicleIdChange = async (event) => {
-    const { value } = event.target; 
+    const { value } = event.target;
     // Get the value entered in the vehicleId field
 
     console.log(value);
@@ -62,7 +73,7 @@ const WeighingInformation = () => {
         // If the response is successful, set the tareWeight state
         const apiData = response.data;
         setTareWeight(apiData.tareWeight);
-      } 
+      }
     } catch (error) {
       console.error("API request failed:", error);
     }
@@ -270,7 +281,7 @@ const WeighingInformation = () => {
                 <iframe
                   width="100%"
                   height="315"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  src="https://www.youtube.com/embed/IVacpDtUyDk?si=5LppTfTT6NibVnqK"
                   allowFullScreen
                   title="YouTube Video"
                 ></iframe>
