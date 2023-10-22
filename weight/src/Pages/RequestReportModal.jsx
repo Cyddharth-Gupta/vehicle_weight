@@ -29,15 +29,18 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
 
   const [formDataObject, setFormDataObject] = React.useState({});
 
-  const dispatch = useDispatch();
-  const userLoggedInData = useSelector(userLoginData);
-  console.log(userLoggedInData);
-  const userIdData = useSelector(userData);
-  console.log(userIdData);
+  const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
+  console.log(storedUserData);
 
-  React.useEffect(() => {
-    dispatch(logInUser(userLoggedInData));
-  }, []);
+  const dispatch = useDispatch();
+  // const userLoggedInData = useSelector(userLoginData);
+  // console.log(userLoggedInData);
+  // const userIdData = useSelector(userData);
+  // console.log(userIdData);
+
+  // React.useEffect(() => {
+  //   dispatch(logInUser(userLoggedInData));
+  // }, []);
 
   const recieptUrl = useSelector(recieptUrlData);
   console.log(recieptUrl);
@@ -98,7 +101,7 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     const finalFormDataObject = {
       ...newFormDataObject,
       reportUrl: data?.fileUrl,
-      userId: userIdData?.data.userId,
+      userId: storedUserData?.data.userId,
     };
     console.log(finalFormDataObject);
     try {

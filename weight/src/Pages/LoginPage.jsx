@@ -4,9 +4,10 @@ import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import { logInUser } from "../redux_store/slice/userInfoSlice";
 import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
-import { useDispatch } from "react-redux";
+import { userData } from "../redux_store/slice/userInfoSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const LoginPage = ({onLogin}) => {
+const LoginPage = ({ onLogin }) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +30,7 @@ const LoginPage = ({onLogin}) => {
     onLogin();
     const form = event.target;
     form.reset();
-    window.alert("Form Submitted Successfully!")
+    window.alert("Form Submitted Successfully!");
   };
   const fields = [
     {
@@ -49,7 +50,7 @@ const LoginPage = ({onLogin}) => {
   ];
 
   const mycustomClass = "mx-4 my-12 w-full";
-  const custombuttonclass = "px-36 m-6"
+  const custombuttonclass = "px-36 m-6";
   return (
     <div className="flex flex-row justify-normal">
       <img src={truck} alt="truck" />
@@ -61,7 +62,7 @@ const LoginPage = ({onLogin}) => {
           errors={errors}
           submitButtonLabel={"Login"}
           customClass={mycustomClass}
-          customButtonClass = {custombuttonclass}
+          customButtonClass={custombuttonclass}
         />
       </div>
     </div>

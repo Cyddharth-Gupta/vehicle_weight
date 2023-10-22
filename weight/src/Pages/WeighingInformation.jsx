@@ -25,22 +25,17 @@ const WeighingInformation = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-
-  const user = useSelector(userLoginData);
-  console.log(user);
+  const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
   React.useEffect(() => {
-    dispatch(logInUser(user));
-    console.log("called");
-  },[])
-
-  const oneUserData = useSelector(userData);
-  console.log(oneUserData);
-
-  React.useEffect(() => {
-    dispatch(fetchWeightInfo({userId: oneUserData?.data?.userData?.userId, employeeType: oneUserData?.data?.userData?.employeeType}));
+    dispatch(
+      fetchWeightInfo({
+        userId: storedUserData?.data?.userData?.userId,
+        employeeType: storedUserData?.data?.userData?.employeeType,
+      })
+    );
     console.log("called2");
-  }, [oneUserData]);
+  }, []);
  
   const weightInfo = useSelector(WeightInfoData);
   console.log(weightInfo);
@@ -71,6 +66,9 @@ const WeighingInformation = () => {
       zoneId: weightInfo[0]?.zone?.zoneId,
       zoneName: weightInfo[0]?.zone?.name,
       employeeName: weightInfo[0]?.fullName,
+      city: weightInfo[0]?.zone.city,
+      state: weightInfo[0]?.zone.state,
+      address: weightInfo[0]?.zone.address,
     };
 
     console.log(newFormDataObject);
@@ -183,13 +181,6 @@ const WeighingInformation = () => {
       required: true,
       maxLength: 20,
     },
-    // {
-    //   name: "userId",
-    //   label: "User ID",
-    //   type: "text",
-    //   required: true,
-    //   maxLength: 50,
-    // },
     {
       name: "vehicleId",
       label: "Vehicle ID",
@@ -198,43 +189,22 @@ const WeighingInformation = () => {
       maxLength: 50,
     },
     // {
-    //   name: "zoneId",
-    //   label: "Zone ID",
+    //   name: "address",
+    //   label: "Address",
     //   type: "text",
     //   required: true,
     //   maxLength: 50,
     // },
     // {
-    //   name: "zoneName",
-    //   label: "Zone Name",
+    //   name: "city",
+    //   label: "City",
     //   type: "text",
     //   required: true,
     //   maxLength: 50,
     // },
-    {
-      name: "address",
-      label: "Address",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
-    {
-      name: "city",
-      label: "City",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
-    {
-      name: "state",
-      label: "State",
-      type: "text",
-      required: true,
-      maxLength: 50,
-    },
     // {
-    //   name: "employeeName",
-    //   label: "Employee Name",
+    //   name: "state",
+    //   label: "State",
     //   type: "text",
     //   required: true,
     //   maxLength: 50,

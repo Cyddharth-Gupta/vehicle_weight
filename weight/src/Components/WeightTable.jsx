@@ -95,6 +95,8 @@ const WeightTable = () => {
 
   const dispatch = useDispatch();
 
+  const storedUserData = localStorage.getItem("userIdData");
+
   React.useEffect(() => {
     dispatch(fetchWeightTracker());
   }, []);

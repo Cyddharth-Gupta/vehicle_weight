@@ -27,6 +27,8 @@ const ZoneInformationGeneral = () => {
 
   const users = useSelector(userTrackerData);
   console.log(users);
+  const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
+  console.log(storedUserData);
 
   const optionsList = users.map((item) => ([
     `${item.fullName} - ${item.employeeId}`,

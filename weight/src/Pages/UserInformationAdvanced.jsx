@@ -49,9 +49,6 @@ const UserInformationAdvanced = () => {
     } catch (error) {
       console.log(error);
     }
-    // console.log(formDataObject);
-    // const form = event.target;
-    // form.reset();
     console.log(formDataObject);
     const form = event.target;
     form.reset();
