@@ -54,8 +54,8 @@ const UserInformationGeneral = () => {
   ];
 
   return (
-    <main className="flex flex-row justify-center items-center ">
-      <img src={glass} alt={"magnifying glass"} />
+    <main className="flex flex-row justify-center items-center mt-36">
+      <img src={glass} alt={"magnifying glass"} className="h-auto w-auto"/>
       <ReusableForm
         onSubmit={onSubmit}
         fields={fields}
