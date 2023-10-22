@@ -7,6 +7,7 @@ import {
   faSpinner,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import DataHandler from '../Components/DataHandler';
 import Papa from "papaparse";
 
 const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
@@ -30,7 +31,10 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
 
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
-    setSelectedFiles(files);
+    setSelectedFiles((prevSelectedFiles) => [
+      ...prevSelectedFiles,
+      ...files, // Append the newly selected files
+    ]);
 
     setUploadSuccess(false);
     setUploadFailed(false);
@@ -54,10 +58,34 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
       .filter((item) => item.kind === "file")
       .map((item) => item.getAsFile());
 
+    // Filter and validate the dropped files
+    const validFiles = newFiles.filter((file) => {
+      return file.type === "application/json" || file.type === "text/csv";
+    });
+
     setSelectedFiles((prevSelectedFiles) => [
       ...prevSelectedFiles,
-      ...newFiles,
+      ...validFiles,
     ]);
+
+    if (uploadSuccess) {
+      // Reset the upload state
+      setUploadSuccess(false);
+      setUploadFailed(false);
+      setUploadProgress(0);
+    }
+
+    validFiles.forEach((file) => {
+      if (file.type === "text/csv") {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const csvData = e.target.result;
+          const jsonData = parseCSVToJSON(csvData);
+          console.log(jsonData); // Do something with the parsed JSON data
+        };
+        reader.readAsText(file);
+      }
+    });
   };
 
   const parseCSVToJSON = (csvData) => {
@@ -140,7 +168,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
               accept=".json,.csv"
               ref={fileInputRef}
               onChange={handleFileSelection}
-              multiple
+              multiple={true}
               className="hidden"
             />
             <button
@@ -185,7 +213,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
           {uploading && !uploadFailed && !uploadSuccess && (
             <div className="mt-4">
               <div className="mb-2 text-center">
-              Uploading... {uploadProgress.toFixed(2)}%
+                Uploading... {uploadProgress.toFixed(2)}%
               </div>
               <div className="w-full bg-gray-200 h-2 rounded-md">
                 <div
@@ -221,6 +249,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
           </div>
         </div>
       </div>
+      <DataHandler selectedFiles={selectedFiles} /> 
     </div>
   );
 };

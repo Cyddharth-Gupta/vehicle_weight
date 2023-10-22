@@ -9,6 +9,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const VehicleInformation = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -37,11 +38,12 @@ const VehicleInformation = () => {
       );
       const form = event.target;
       form.reset();
-      window.alert("Form Submitted Successfully!")
+      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
+      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
   };
 

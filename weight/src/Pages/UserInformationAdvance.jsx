@@ -1,4 +1,5 @@
 import React from "react";
+import { useSnackbar } from "notistack";
 import ReusableForm from "../Components/ReusableForm";
 import glass from "../assets/vehicleinformationglass.svg";
 import { useForm } from "react-hook-form";
@@ -6,7 +7,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { userGeneralInfoData } from "../redux_store/slice/userTrackerSlice";
 
-const UserInformationAdvanced = () => {
+const UserInformationAdvance = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -45,17 +47,18 @@ const UserInformationAdvanced = () => {
       const form = event.target;
       form.reset();
       console.log(res.data);
+      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
+      enqueueSnackbar("Form submission failed.", { variant: "error" });
       console.log(error);
     }
     // console.log(formDataObject);
     // const form = event.target;
     // form.reset();
-    console.log(formDataObject);
-    const form = event.target;
-    form.reset();
-    window.alert("Form Submitted Successfully!")
+    // console.log(formDataObject);
+    // const form = event.target;
+    // form.reset();
   };
 
   const fields = [
@@ -76,17 +79,17 @@ const UserInformationAdvanced = () => {
   ];
 
   return (
-        <main className="flex flex-row justify-center items-center mt-40">
-          <img src={glass} alt={"magnifying glass"} />
-          <ReusableForm
-            onSubmit={onSubmit}
-            fields={fields}
-            errors={errors}
-            showCancel={true}
-            submitButtonLabel={"Submit"}
-          />
-        </main>
+      <main className="flex flex-row justify-center items-center mt-40">
+        <img src={glass} alt={"magnifying glass"} />
+        <ReusableForm
+          onSubmit={onSubmit}
+          fields={fields}
+          errors={errors}
+          showCancel={true}
+          submitButtonLabel={"Submit"}
+        />
+      </main>
   );
 };
 
-export default UserInformationAdvanced;
+export default UserInformationAdvance;

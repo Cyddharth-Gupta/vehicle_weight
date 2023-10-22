@@ -7,7 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import UserInformationAdvanced from "../Pages/UserInformationAdvanced";
+import UserInformationAdvance from "../Pages/UserInformationAdvance";
 import UserInformationGeneral from '../Pages/UserInformationGeneral';
 
 function TabPanel(props) {
@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ReusableTabs() {
+export default function TabsUserInformation() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -80,7 +80,7 @@ export default function ReusableTabs() {
        <UserInformationGeneral />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <UserInformationAdvanced />
+        <UserInformationAdvance />
         </TabPanel>
       </SwipeableViews>
     </Box>

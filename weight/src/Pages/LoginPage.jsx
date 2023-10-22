@@ -6,7 +6,7 @@ import { logInUser } from "../redux_store/slice/userInfoSlice";
 import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
 import { useDispatch } from "react-redux";
 
-const LoginPage = ({onLogin}) => {
+const LoginPage = ({ onLogin }) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,6 @@ const LoginPage = ({onLogin}) => {
     onLogin();
     const form = event.target;
     form.reset();
-    window.alert("Form Submitted Successfully!")
   };
   const fields = [
     {
@@ -49,11 +48,12 @@ const LoginPage = ({onLogin}) => {
   ];
 
   const mycustomClass = "mx-4 my-12 w-full";
-  const custombuttonclass = "px-36 m-6"
+  const custombuttonclass = "px-36 m-6";
   return (
-    <div className="flex flex-row justify-normal">
-      <img src={truck} alt="truck" />
-      <div className="flex flex-col ml-52 justify-center items-start">
+    <div className="flex flex-row justify-evenly h-screen relative">
+      <div className="bg-blue-300 w-[70rem] absolute top-0 left-0 bottom-0 -ml-28 opacity-40" />
+      <img src={truck} alt="truck" className="w-full z-10 h-auto" />
+      <div className="flex flex-col justify-center items-start mr-36 z-20 relative">
         <h1 className="text-4xl">Login</h1>
         <ReusableForm
           fields={fields}
@@ -61,7 +61,7 @@ const LoginPage = ({onLogin}) => {
           errors={errors}
           submitButtonLabel={"Login"}
           customClass={mycustomClass}
-          customButtonClass = {custombuttonclass}
+          customButtonClass={custombuttonclass}
         />
       </div>
     </div>
