@@ -24,21 +24,15 @@ const WeighingInformation = () => {
   const dispatch = useDispatch();
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
-  React.useEffect(() => {
-    dispatch(logInUser(user));
-    console.log("called");
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(logInUser(user));
+  //   console.log("called");
+  // }, []);
 
-  const oneUserData = useSelector(userData);
-  console.log(oneUserData);
+  // const oneUserData = useSelector(userData);
+  // console.log(oneUserData);
 
   React.useEffect(() => {
-    dispatch(
-      fetchWeightInfo({
-        userId: oneUserData?.data?.userData?.userId,
-        employeeType: oneUserData?.data?.userData?.employeeType,
-      })
-    );
     dispatch(
       fetchWeightInfo({
         userId: storedUserData?.data?.userData?.userId,
