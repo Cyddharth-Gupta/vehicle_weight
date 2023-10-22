@@ -6,6 +6,7 @@ import { userGeneralInfo } from "../redux_store/slice/userTrackerSlice";
 import { useDispatch } from "react-redux";
 
 const UserInformationGeneral = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,

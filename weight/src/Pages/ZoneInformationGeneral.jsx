@@ -113,7 +113,7 @@ const ZoneInformationGeneral = () => {
   const customButtonClass = "m-3";
   return (
     <main className="flex flex-row justify-normal">
-      <img src={informationTruck} alt={"truck"} />
+      <img src={informationTruck} alt={"truck"} className="h-auto w-auto" />
       <ReusableForm
         onSubmit={onSubmit}
         fields={fields}
