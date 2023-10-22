@@ -1,5 +1,5 @@
 import React from "react";
-import truck from "../assets/vehicleinformationtruck.svg";
+import { SnackbarProvider, useSnackbar } from "notistack";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,7 @@ import { userLoginData } from "../redux_store/slice/userInfoSlice";
 import { userInfoLoading } from "../redux_store/slice/userInfoSlice";
 
 const WeighingInformation = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -28,6 +29,20 @@ const WeighingInformation = () => {
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
   React.useEffect(() => {
+    dispatch(logInUser(user));
+    console.log("called");
+  }, []);
+
+  const oneUserData = useSelector(userData);
+  console.log(oneUserData);
+
+  React.useEffect(() => {
+    dispatch(
+      fetchWeightInfo({
+        userId: oneUserData?.data?.userData?.userId,
+        employeeType: oneUserData?.data?.userData?.employeeType,
+      })
+    );
     dispatch(
       fetchWeightInfo({
         userId: storedUserData?.data?.userData?.userId,
@@ -84,11 +99,13 @@ const WeighingInformation = () => {
       );
       const form = event.target;
       form.reset();
-      window.alert("Form Submitted Successfully!");
       console.log(res.data);
+      window.alert("blahh");
+      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
       console.log(error);
+      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
 
     // console.log(formDataObject);
@@ -217,54 +234,63 @@ const WeighingInformation = () => {
   const customSelectClass = "mx-14";
   const customButtonClass = "px-16 my-5";
   return (
-    <div className="flex flex-row">
-      <NavigationDrawer />
-      <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
-        <div className="flex flex-row">
-          <button>
-            <Link to="/WeighingTracker">
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className=" text-4xl p-5 font-medium"
-              />
-            </Link>
-          </button>
-          <h1 className="text-4xl p-5 font-medium"> Weighing Information </h1>
-        </div>
-
-        <main className="flex flex-row justify-normal ">
-          <ReusableForm
-            onSubmit={onSubmit}
-            className="flex-row"
-            fields={fields}
-            errors={errors}
-            submitButtonLabel={"Submit"}
-            customClass={customClass}
-            customInputClass={customInputClass}
-            customLabelClass={customLabelClass}
-            customButtonClass={customButtonClass}
-            customSelectClass={customSelectClass}
-            showCancel={true}
-          />
-          <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">
-            <button className=" text-white bg-[#6759FF] hover:bg-[#5549CC] py-2 px-24 w-full">
-              Scan RFID Card
+    <SnackbarProvider maxSnack={3}>
+      <div className="flex flex-row">
+        <NavigationDrawer />
+        <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
+          <div className="flex flex-row">
+            <button>
+              <Link to="/WeighingTracker">
+                <FontAwesomeIcon
+                  icon={faAngleLeft}
+                  className=" text-4xl p-5 font-medium"
+                />
+              </Link>
             </button>
-            <div className=" my-3 rounded-md px-16 py-6 text-[#6759FF] border border-[#6759FF] hover:bg-gray-200">
-              Scan RFID Card
-              <p className="text-black">ID : #t86382bjhbjh</p>
-            </div>
-            <div className="bg-slate-200 flex flex-row items-center justify-center px-16 py-4">
-              <p>Weight:</p>
-              <p className="text-[#6759FF] ml-2">6770Kg</p>
-            </div>
-            <div className="w-full">
-              <img src={RFIDtruck} className="my-3 w-full" />
-            </div>
+            <h1 className="text-4xl p-5 font-medium"> Weighing Information </h1>
           </div>
-        </main>
+
+          <main className="flex flex-row justify-normal ">
+            <ReusableForm
+              onSubmit={onSubmit}
+              className="flex-row"
+              fields={fields}
+              errors={errors}
+              submitButtonLabel={"Submit"}
+              customClass={customClass}
+              customInputClass={customInputClass}
+              customLabelClass={customLabelClass}
+              customButtonClass={customButtonClass}
+              customSelectClass={customSelectClass}
+              showCancel={true}
+            />
+            <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">
+              <button className=" text-white bg-[#6759FF] hover:bg-[#5549CC] py-2 px-24 w-full">
+                Scan RFID Card
+              </button>
+              <div className=" my-3 rounded-md px-16 py-6 text-[#6759FF] border border-[#6759FF] hover:bg-gray-200">
+                Scan RFID Card
+                <p className="text-black">ID : #t86382bjhbjh</p>
+              </div>
+              <div className="bg-slate-200 flex flex-row items-center justify-center px-16 py-4">
+                <p>Weight:</p>
+                <p className="text-[#6759FF] ml-2">6770Kg</p>
+              </div>
+              <div className="w-full my-3">
+                {/* <img src={RFIDtruck} className="my-3 w-full" /> */}
+                <iframe
+                  width="100%"
+                  height="315"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  allowFullScreen
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </SnackbarProvider>
   );
 };
 

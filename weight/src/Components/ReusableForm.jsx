@@ -13,10 +13,7 @@ const ReusableForm = ({
   optionsList,
 }) => {
   return (
-    <form
-      className={`${customClass} flex-shrink m-16`}
-      onSubmit={onSubmit}
-    >
+    <form className={`${customClass} flex-shrink m-16`} onSubmit={onSubmit}>
       {fields.map((field, index) => (
         <div key={index} className="flex flex-col">
           <label className={`${customLabelClass} text-lg mb-21`}>
@@ -68,7 +65,7 @@ const ReusableForm = ({
           type="submit"
           className={`${customButtonClass} py-2 px-12 text-white bg-[#6759FF] hover:bg-[#5549CC]`}
         >
-          {submitButtonLabel}
+        {submitButtonLabel}
         </button>
       </div>
     </form>

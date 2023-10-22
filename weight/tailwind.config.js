@@ -6,7 +6,9 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      snackbarClasses: "bg-blue-500 text-white"
+    },
     screens: {
       'sm': '640px', // Small screens
       'md': '768px', // Medium screens
