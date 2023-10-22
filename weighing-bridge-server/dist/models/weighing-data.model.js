@@ -114,6 +114,13 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
+        required: false,
+    }),
+    tslib_1.__metadata("design:type", String)
+], WeighingData.prototype, "barcodeUrl", void 0);
+tslib_1.__decorate([
+    (0, repository_1.property)({
+        type: 'string',
         required: true,
     }),
     tslib_1.__metadata("design:type", String)

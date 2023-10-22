@@ -9,6 +9,13 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const pdfKit = require('html-pdf-node');
 const { readFile } = require('fs/promises');
+const canvas_1 = require("canvas");
+const jsbarcode_1 = tslib_1.__importDefault(require("jsbarcode"));
+const config = {
+    accessKeyId: 'AKIA5R6PRO3WQXNRZFZO',
+    secretAccessKey: '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',
+};
+const s3 = new aws_sdk_1.default.S3(config);
 const slugify = function (string) {
     const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;';
     const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------';
@@ -48,12 +55,17 @@ let WeighingDataController = exports.WeighingDataController = class WeighingData
         file.content = file.content.replace('{{grossWeight}}', weighingData.grossWeight);
         file.content = file.content.replace('{{tareWeight}}', weighingData.tareWeight);
         file.content = file.content.replace('{{netWeight}}', weighingData.netWeight);
+        const canvas = new canvas_1.Canvas(100, 50, "image");
+        (0, jsbarcode_1.default)(canvas, weighingData.slipNumber);
+        const barcodeFile = await s3.upload({
+            Bucket: 'weighing-bridge-resources',
+            Key: `barcodes/${weighingData.slipNumber}.png`,
+            Body: canvas.toBuffer(),
+            ContentType: `image/png`
+        }).promise();
+        file.content = file.content.replace('{{barcodeUrl}}', barcodeFile.Location);
+        weighingData.barcodeUrl = barcodeFile.Location;
         let pdfBuffer = await pdfKit.generatePdf(file, options);
-        const config = {
-            accessKeyId: 'AKIA5R6PRO3WQXNRZFZO',
-            secretAccessKey: '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',
-        };
-        const s3 = new aws_sdk_1.default.S3(config);
         const s3File = await s3.upload({
             Bucket: 'weighing-bridge-resources',
             Key: `receipts/${slugify(weighingData.zoneName)}/${weighingData.slipNumber}.pdf`,

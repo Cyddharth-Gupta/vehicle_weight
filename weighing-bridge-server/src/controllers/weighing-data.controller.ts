@@ -22,6 +22,14 @@ import {WeighingData} from '../models';
 import {WeighingDataRepository} from '../repositories';
 const pdfKit = require('html-pdf-node');
 const { readFile } = require('fs/promises');
+import { Canvas } from 'canvas';
+import JsBarcode from 'jsbarcode';
+
+const config = {
+  accessKeyId: 'AKIA5R6PRO3WQXNRZFZO',
+  secretAccessKey: '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',
+}
+const s3 = new AWS.S3(config);
 
 const slugify = function (string:string) {
   const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
@@ -36,7 +44,9 @@ const slugify = function (string:string) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, '') // Trim - from end of text
-}
+};
+
+
 
 export class WeighingDataController {
   constructor(
@@ -86,13 +96,20 @@ export class WeighingDataController {
     file.content = file.content.replace('{{tareWeight}}', weighingData.tareWeight);
     file.content = file.content.replace('{{netWeight}}', weighingData.netWeight);
 
-    let pdfBuffer = await pdfKit.generatePdf(file, options);
+    const canvas = new Canvas(100, 50, "image");
+    JsBarcode(canvas, weighingData.slipNumber);
 
-    const config = {
-      accessKeyId: 'AKIA5R6PRO3WQXNRZFZO',
-      secretAccessKey: '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',
-    }
-    const s3 = new AWS.S3(config);
+    const barcodeFile = await s3.upload({
+      Bucket: 'weighing-bridge-resources',
+      Key: `barcodes/${weighingData.slipNumber}.png`,
+      Body: canvas.toBuffer(),
+      ContentType: `image/png`
+    }).promise();
+
+    file.content = file.content.replace('{{barcodeUrl}}', barcodeFile.Location);
+    weighingData.barcodeUrl = barcodeFile.Location;
+
+    let pdfBuffer = await pdfKit.generatePdf(file, options);
 
     const s3File = await s3.upload({
       Bucket: 'weighing-bridge-resources',

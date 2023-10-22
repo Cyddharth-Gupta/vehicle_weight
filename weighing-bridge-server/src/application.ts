@@ -15,6 +15,7 @@ export {ApplicationConfig};
 export class WeighingBridgeServerApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
+  io: any;
   constructor(options: ApplicationConfig = {}) {
     super(options);
 
