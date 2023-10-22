@@ -78,7 +78,6 @@ const WeightTable = () => {
       headerAlign: "center",
       align: "center",
       renderCell: (cellValues) => {
-        console.log(cellValues.row.receipt);
         return (
           <a
             href={cellValues.row.receipt}
@@ -92,13 +91,20 @@ const WeightTable = () => {
     },
   ];
 
-
   const dispatch = useDispatch();
 
-  const storedUserData = localStorage.getItem("userIdData");
+  const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
+
+  console.log(storedUserData);
+  console.log(storedUserData?.data?.userData?.userType);
 
   React.useEffect(() => {
-    dispatch(fetchWeightTracker());
+    dispatch(
+      fetchWeightTracker({
+        zoneId: storedUserData?.data?.userData?.zone?.zoneId,
+        employeeType: storedUserData?.data?.userData?.userType,
+      })
+    );
   }, []);
 
   const weightData = useSelector(weightTrackerData);
