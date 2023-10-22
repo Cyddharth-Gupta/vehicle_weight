@@ -50,7 +50,7 @@ const LoginPage = ({ onLogin }) => {
 
   const mycustomClass = "mx-4 my-12 w-full";
   const custombuttonclass = "px-36 m-6";
-  const custombuttonclass = "px-36 m-6";
+   custombuttonclass = "px-36 m-6";
   return (
     <div className="flex flex-row justify-evenly h-screen relative">
       <div className="bg-blue-300 w-[70rem] absolute top-0 left-0 bottom-0 -ml-28 opacity-40" />
