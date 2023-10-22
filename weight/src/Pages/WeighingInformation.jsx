@@ -9,12 +9,8 @@ import RFIDtruck from "../assets/RFIDtruck.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { logInUser } from "../redux_store/slice/userInfoSlice";
-import { userData } from "../redux_store/slice/userInfoSlice";
 import { fetchWeightInfo } from "../redux_store/slice/weightInfoSlice";
 import { WeightInfoData } from "../redux_store/slice/weightInfoSlice";
-import { userLoginData } from "../redux_store/slice/userInfoSlice";
-import { userInfoLoading } from "../redux_store/slice/userInfoSlice";
 
 const WeighingInformation = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -28,21 +24,15 @@ const WeighingInformation = () => {
   const dispatch = useDispatch();
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
-  React.useEffect(() => {
-    dispatch(logInUser(user));
-    console.log("called");
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(logInUser(user));
+  //   console.log("called");
+  // }, []);
 
-  const oneUserData = useSelector(userData);
-  console.log(oneUserData);
+  // const oneUserData = useSelector(userData);
+  // console.log(oneUserData);
 
   React.useEffect(() => {
-    dispatch(
-      fetchWeightInfo({
-        userId: oneUserData?.data?.userData?.userId,
-        employeeType: oneUserData?.data?.userData?.employeeType,
-      })
-    );
     dispatch(
       fetchWeightInfo({
         userId: storedUserData?.data?.userData?.userId,
@@ -51,11 +41,33 @@ const WeighingInformation = () => {
     );
     console.log("called2");
   }, []);
- 
+
   const weightInfo = useSelector(WeightInfoData);
   console.log(weightInfo);
 
   console.log(weightInfo?.zone?.zoneId);
+
+   const [tareWeight, setTareWeight] = React.useState("");
+
+  const onVehicleIdChange = async (event) => {
+    const { value } = event.target; 
+    // Get the value entered in the vehicleId field
+
+    console.log(value);
+    // Call the API to fetch tareWeight based on the entered vehicleId
+    try {
+      const response = await axios.get(`http://[::1]:3000/vehicles/${value}`);
+
+      if (response.status === 200) {
+        // If the response is successful, set the tareWeight state
+        const apiData = response.data;
+        setTareWeight(apiData.tareWeight);
+      } 
+    } catch (error) {
+      console.error("API request failed:", error);
+    }
+  };
+  console.log(tareWeight);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -107,10 +119,6 @@ const WeighingInformation = () => {
       console.log(error);
       enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
-
-    // console.log(formDataObject);
-    // const form = event.target;
-    // form.reset();
   };
 
   const fields = [
@@ -176,6 +184,7 @@ const WeighingInformation = () => {
       type: "number",
       required: true,
       maxLength: 50,
+      value: tareWeight,
     },
     {
       name: "netWeight",
@@ -204,28 +213,8 @@ const WeighingInformation = () => {
       type: "text",
       required: true,
       maxLength: 50,
+      onChange: onVehicleIdChange,
     },
-    // {
-    //   name: "address",
-    //   label: "Address",
-    //   type: "text",
-    //   required: true,
-    //   maxLength: 50,
-    // },
-    // {
-    //   name: "city",
-    //   label: "City",
-    //   type: "text",
-    //   required: true,
-    //   maxLength: 50,
-    // },
-    // {
-    //   name: "state",
-    //   label: "State",
-    //   type: "text",
-    //   required: true,
-    //   maxLength: 50,
-    // },
   ];
 
   const customClass = "grid w-2/3 grid-cols-2 gap-4 mx-5 ";
