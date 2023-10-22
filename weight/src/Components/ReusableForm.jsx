@@ -47,6 +47,8 @@ const ReusableForm = ({
               required={field.required}
               maxLength={field.maxLength}
               minLength={field.minLength}
+              onChange={field.onChange}
+              value={field.value}
             />
           )}
         </div>

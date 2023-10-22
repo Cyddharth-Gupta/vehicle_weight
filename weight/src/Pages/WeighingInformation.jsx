@@ -62,12 +62,9 @@ const WeighingInformation = () => {
         // If the response is successful, set the tareWeight state
         const apiData = response.data;
         setTareWeight(apiData.tareWeight);
-      } else {
-        window.alert("Failed to fetch tareWeight for the given vehicleId.");
-      }
+      } 
     } catch (error) {
       console.error("API request failed:", error);
-      window.alert("API request failed. Please try again later.");
     }
   };
   console.log(tareWeight);
