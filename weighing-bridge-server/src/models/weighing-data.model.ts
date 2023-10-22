@@ -93,6 +93,12 @@ export class WeighingData extends Entity {
 
   @property({
     type: 'string',
+    required: false,
+  })
+  barcodeUrl: string;
+
+  @property({
+    type: 'string',
     required: true,
   })
   zoneName: string;

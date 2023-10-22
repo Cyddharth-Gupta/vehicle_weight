@@ -8,6 +8,41 @@ const aws_sdk_1 = tslib_1.__importDefault(require("aws-sdk"));
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const express = require('express')();
+const server = require('http').createServer(express);
+const { SerialPort } = require('serialport');
+async function emitWeighingData(io, zoneInfo) {
+    const serialPort = new SerialPort({
+        path: zoneInfo.weighingPort,
+        baudRate: zoneInfo.baudRate,
+        dataBits: zoneInfo.dataBits,
+        stopBits: zoneInfo.stopBits,
+        flowControl: zoneInfo.flowControl,
+        parity: zoneInfo.parity,
+        autoOpen: true
+    });
+    console.log("SerialPort is open", serialPort.isOpen);
+    //console.log("Entered34");
+    serialPort.on('open', function () {
+        console.log("Open");
+        // serialPort.write(0x05); 
+    });
+    serialPort.on('data', function (data) {
+        // const b = Buffer.from(data);
+        // let bufferValue = b.toString('utf-8').replace('\x02','').split(' ').join('');
+        let bufferValue = '7800';
+        if (!isNaN(parseInt(bufferValue))) {
+            let reading = parseFloat(bufferValue);
+            if (!isNaN(reading)) {
+                io.emit('weighing-bridge-data', { data: 7800 });
+            }
+        }
+    });
+    serialPort.on('error', function (error) {
+        console.log('error', error);
+    });
+}
+;
 let UserController = exports.UserController = class UserController {
     constructor(userRepository, userSessionRepository) {
         this.userRepository = userRepository;
@@ -42,13 +77,36 @@ let UserController = exports.UserController = class UserController {
             where: {
                 username: payload.username,
                 password: payload.password
-            }
+            },
+            include: [{
+                    "relation": "zone",
+                    "scope": {
+                        "offset": 0,
+                        "skip": 0,
+                        "order": ["createdAt desc"],
+                        "fields": {},
+                        "include": []
+                    }
+                }]
         });
         if (user) {
             const token = Jwt.sign({ username: user.username, employeeId: user.employeeId }, 'WeighingBridgeServer');
             await this.userSessionRepository.create({
                 userId: user.userId,
                 token: token
+            });
+            const io = require('socket.io')(server, {
+                cors: {
+                    origin: '*',
+                }
+            });
+            server.listen(3001);
+            io.on('connection', function (socket) {
+                console.log('a user connected');
+                socket.on('disconnect', function () {
+                    console.log('user disconnected');
+                });
+                emitWeighingData(io, user.zone);
             });
             return {
                 description: 'User is logged in.',

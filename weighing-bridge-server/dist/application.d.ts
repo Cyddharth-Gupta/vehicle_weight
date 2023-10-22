@@ -268,5 +268,6 @@ declare const WeighingBridgeServerApplication_base: (new (...args: any[]) => {
     eventNames: () => (string | symbol)[];
 }) & typeof RestApplication;
 export declare class WeighingBridgeServerApplication extends WeighingBridgeServerApplication_base {
+    io: any;
     constructor(options?: ApplicationConfig);
 }

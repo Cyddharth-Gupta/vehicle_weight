@@ -31,8 +31,8 @@ if (require.main === module) {
             openApiSpec: {
                 // useful when used with OpenAPI-to-GraphQL to locate your application
                 setServersFromRequest: true,
-            },
-        },
+            }
+        }
     };
     main(config).catch(err => {
         console.error('Cannot start the application.', err);
