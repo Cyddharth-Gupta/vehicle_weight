@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import Avatar from "@mui/material/Avatar";
 import priyanka from "../assets/priyanka.jpg";
 import naruto from "../assets/naruto.jpg";
@@ -8,7 +8,6 @@ import sakura from "../assets/sakura.jpg";
 import { fetchReport } from "../redux_store/slice/reportSlice";
 import { reportData } from "../redux_store/slice/reportSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 
 const columns = [
   {
@@ -30,7 +29,7 @@ const columns = [
         </>
       );
     },
-    flex:1,
+    flex: 1,
     headerAlign: "center",
     align: "left",
   },
@@ -83,32 +82,31 @@ const columns = [
     headerAlign: "center",
     align: "center",
     renderCell: (cellValues) => {
-        return (
-          <a href={cellValues.row.reciept}>
-            <FileDownloadOutlinedIcon style={{ color: "#6759FF" }} />
-          </a>
-        );
-      },
+      return (
+        <a href={cellValues.row.reciept} target="_blank" download="reciept.pdf">
+          <FileDownloadOutlinedIcon style={{ color: "#6759FF" }} />
+        </a>
+      );
+    },
   },
 ];
-
 
 export default function DataTable() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(fetchReport());
-  },[]);
+  }, []);
 
   const reports = useSelector(reportData);
 
-   const formatDateToDDMMYYYY = (date) => {
-     const day = date.getDate().toString().padStart(2, "0");
-     const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
-     const year = date.getFullYear();
+  const formatDateToDDMMYYYY = (date) => {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
 
-     return `${day}/${month}/${year}`;
-   };
+    return `${day}/${month}/${year}`;
+  };
 
   const mappedData = reports.map((item) => ({
     id: item.userId,
@@ -144,7 +142,7 @@ export default function DataTable() {
 
           "& .MuiDataGrid-columnHeaderTitle": {
             fontWeight: "bold",
-          }
+          },
         }}
       />
     </div>

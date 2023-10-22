@@ -43,6 +43,7 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   console.log(recieptUrl);
   const jsonString = JSON.stringify(recieptUrl);
   const base64String = btoa(jsonString);
+  const prefixedBase64Data = "data:image/pdf;base64," + base64String;
   //console.log(base64String);
 
   const formatFromDate = (inputDate) => {
@@ -70,15 +71,15 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     return isoString;
   };
 
-  const ImageUpload = async (base64String, newFormDataObject) => {
+  const ImageUpload = async (prefixedBase64Data, newFormDataObject) => {
     try {
       const res = await axios.post(
         "http://[::1]:3000/file/upload",
         JSON.stringify({
           fileName: newFormDataObject.reportName,
           fileType: "image",
-          fileExtention: "pdf",
-          fileData: base64String,
+          fileExtention: "png",
+          fileData: prefixedBase64Data,
         }),
         {
           headers: {
@@ -135,7 +136,7 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
     //console.log(newFormDataObject);
     try {
       await dispatch(fetchRecieptUrl(newFormDataObject));
-      const data = await ImageUpload(base64String, newFormDataObject);
+      const data = await ImageUpload(prefixedBase64Data, newFormDataObject);
       const res = await postReport(newFormDataObject, data);
       console.log(newFormDataObject);
       const form = event.target;
