@@ -9,17 +9,21 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { userData } from "../redux_store/slice/userInfoSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { setLoginStatus } from "../redux_store/slice/userInfoSlice";
 
 const NavigationDrawer = () => {
   const user = useSelector(userData);
   console.log(user);
-  localStorage.setItem("userIdData", JSON.stringify(user));
+  const dispatch = useDispatch();
+  //localStorage.setItem("userIdData", JSON.stringify(user));
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
   const handleLogOut = async () => {
     try {
+      dispatch(setLoginStatus(false));
+      localStorage.clear();
       const res = await axios.post(
         "http://[::1]:3000/users/logout",
         user?.data.userData,
@@ -29,7 +33,7 @@ const NavigationDrawer = () => {
           },
         }
       );
-      localStorage.removeItem("userIdData");
+
       return res.data;
     } catch (error) {
       console.log(error);
@@ -73,7 +77,7 @@ const NavigationDrawer = () => {
           to="/Logout"
           icon={faArrowRightFromBracket}
           className="text-red-600"
-          onClick={() => handleLogOut()}
+          onClick={handleLogOut}
         >
           Log Out
         </Button>

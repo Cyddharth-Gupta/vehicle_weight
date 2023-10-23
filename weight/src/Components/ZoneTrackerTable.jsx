@@ -94,7 +94,7 @@ export default function ZoneTrackerTable() {
     dispatch(fetchZoneTracker());
   }, []);
 
-  const zoneTracker = useSelector(zoneTrackerData);
+  const zoneTracker = useSelector(zoneTrackerData) || [];
   
 
   const mappedData = zoneTracker.map((item) => ({

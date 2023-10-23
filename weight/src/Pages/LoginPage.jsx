@@ -26,21 +26,22 @@ const LoginPage = ({ onLogin }) => {
       formDataObject[key] = value;
     });
     dispatch(logInUser(formDataObject));
-    dispatch(getUserLoginData(formDataObject));
+    console.log(formDataObject);
+    //dispatch(getUserLoginData(formDataObject));
     onLogin();
     const form = event.target;
     form.reset();
   };
   const fields = [
     {
-      name: "UserName",
+      name: "username",
       label: "User Name",
       type: "text",
       required: true,
       maxLength: 20,
     },
     {
-      name: "Password",
+      name: "password",
       label: "Password",
       type: "password",
       required: true,
