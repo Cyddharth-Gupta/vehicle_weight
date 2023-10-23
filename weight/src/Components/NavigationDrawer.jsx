@@ -29,6 +29,7 @@ const NavigationDrawer = () => {
           },
         }
       );
+      localStorage.removeItem("userIdData");
       return res.data;
     } catch (error) {
       console.log(error);
@@ -41,7 +42,7 @@ const NavigationDrawer = () => {
         <img
           src={priyanka}
           alt="Priyanka"
-          className="w-20 h-20 rounded-full m-3"
+          className="w-20 h-20 rounded-full m-3 ml-1"
         />
         <span>
           <h4>{storedUserData?.data?.userData?.fullName}</h4>
