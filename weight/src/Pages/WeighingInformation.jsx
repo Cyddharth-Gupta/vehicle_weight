@@ -27,18 +27,25 @@ const WeighingInformation = () => {
 
   const [grossWeight, setGrossWeight] = React.useState("");
 
-  const socket = io("http://localhost:3001");
-
   React.useEffect(() => {
-    // Create a socket connection to your server
+    const socket = io("http://localhost:3001");
 
-    // Listen for events from the server
-    socket.on("grossWeightData", (data) => {
-      setGrossWeight(data); // Update the state with the received gross weight data
+    // Log when the socket connects
+    socket.on("connect", () => {
+      console.log("Socket connected");
     });
 
-    // Clean up the socket connection when the component unmounts
+    socket.on("weighing-bridge-data", (data) => {
+      console.log("Received gross weight data:", data);
+      setGrossWeight(data);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
+
     return () => {
+      console.log("Cleaning up socket...");
       socket.disconnect();
     };
   }, []);
@@ -54,9 +61,9 @@ const WeighingInformation = () => {
   }, []);
 
   const weightInfo = useSelector(WeightInfoData);
-  console.log(weightInfo);
+  //console.log(weightInfo);
 
-  console.log(weightInfo?.zone?.zoneId);
+  //console.log(weightInfo?.zone?.zoneId);
 
   const [tareWeight, setTareWeight] = React.useState("");
 
@@ -281,7 +288,7 @@ const WeighingInformation = () => {
                 <iframe
                   width="100%"
                   height="315"
-                  src="https://www.youtube.com/embed/IVacpDtUyDk?si=5LppTfTT6NibVnqK"
+                  src="https://www.youtube.com/embed/IVacpDtUyDk?si=qtIlcVkcsEfNLlWQ"
                   allowFullScreen
                   title="YouTube Video"
                 ></iframe>
