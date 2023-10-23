@@ -25,7 +25,7 @@ const ZoneInformationGeneral = () => {
     dispatch(fetchUserTracker());
   },[])
 
-  const users = useSelector(userTrackerData);
+  const users = useSelector(userTrackerData) || [];
   console.log(users);
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
   console.log(storedUserData);

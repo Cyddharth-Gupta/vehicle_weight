@@ -96,7 +96,7 @@ export default function UserTrackerTable() {
     dispatch(fetchUserTracker());
   },[]);
 
-  const userTracker = useSelector(userTrackerData);
+  const userTracker = useSelector(userTrackerData) || [];
   
   const formatDateToDDMMYYYY = (date) => {
     const day = date.getDate().toString().padStart(2, "0");

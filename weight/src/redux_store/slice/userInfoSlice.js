@@ -5,10 +5,26 @@ export const logInUser = createAsyncThunk(
   "userInfo/logInUser",
   async (formData) => {
     try {
+      //axios.defaults.headers.post["Content-Type"] = "application/json";
+      console.log(formData);
+      const form = {
+        username: "aman123",
+        password: "12345",
+      }
+      console.log(JSON.stringify(form));
+      console.log(JSON.stringify(formData));
       const response = await axios.post(
         "http://[::1]:3000/users/login",
-        formData
+        JSON.stringify(formData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
+      console.log(response.data);
+
+      response.data && localStorage.setItem("userIdData", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.log(error);
@@ -20,6 +36,7 @@ const initialState = {
   userInfoLoading: false,
   userData: [],
   userLoginData: [],
+  loginStatus: false,
   error: null,
 };
 
@@ -29,6 +46,9 @@ export const userInfoSlice = createSlice({
   reducers: {
     getUserLoginData: (state, action) => {
       state.userLoginData = action.payload;
+    },
+    setLoginStatus: (state, action) => {
+      state.loginStatus = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -50,4 +70,5 @@ export default userInfoSlice.reducer;
 export const userInfoLoading = (state) => state.userInfo.userInfoLoading;
 export const userData = (state) => state.userInfo.userData;
 export const userLoginData = (state) => state.userInfo.userLoginData;
-export const { getUserLoginData } = userInfoSlice.actions;
+export const loginStatus = (state) => state.userInfo.loginStatus;
+export const { getUserLoginData, setLoginStatus } = userInfoSlice.actions;

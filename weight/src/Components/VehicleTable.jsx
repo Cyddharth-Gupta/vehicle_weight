@@ -10,7 +10,7 @@ const VehicleTable = () => {
     dispatch(fetchVehicleTracker());
   },[]);
 
-  const vehicleTracker = useSelector(VehicleTrackerData);
+  const vehicleTracker = useSelector(VehicleTrackerData) || [];
 
   const mappedData = vehicleTracker.map((item) => ({
     id: item.vehicleId,

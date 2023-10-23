@@ -98,7 +98,7 @@ export default function DataTable() {
     dispatch(fetchReport());
   }, []);
 
-  const reports = useSelector(reportData);
+  const reports = useSelector(reportData) || [];
 
   const formatDateToDDMMYYYY = (date) => {
     const day = date.getDate().toString().padStart(2, "0");
