@@ -13,7 +13,10 @@ module.exports = {
       'sm': '640px', // Small screens
       'md': '768px', // Medium screens
       'lg': '1700px', // Large screens
-      'xl': '1280px', // Extra-large screens
+      'xl': '2500px', // Extra-large screens
+      '2xl':'3500px',
+      '3xl':'4500px',
+      
     },
   },
   plugins: [],

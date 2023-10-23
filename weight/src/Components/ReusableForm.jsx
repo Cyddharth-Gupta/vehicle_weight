@@ -49,6 +49,7 @@ const ReusableForm = ({
               minLength={field.minLength}
               onChange={field.onChange}
               value={field.value}
+              readOnly={field.readOnly} 
             />
           )}
         </div>

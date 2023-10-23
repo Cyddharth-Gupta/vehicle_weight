@@ -101,7 +101,7 @@ const VehicleInformation = () => {
         </div>
 
         <main className="flex flex-row justify-normal ">
-          <img src={truck} alt="truck" className="-ml-70" />
+          <img src={truck} alt="truck" className="-ml-70 h-auto w-auto" />
           <ReusableForm
             onSubmit={onSubmit}
             className="flex-row"
