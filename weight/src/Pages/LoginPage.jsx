@@ -7,7 +7,7 @@ import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
 import { userData } from "../redux_store/slice/userInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = ({onLogin}) => {
   const {
     register,
     handleSubmit,
@@ -56,7 +56,7 @@ const LoginPage = ({ onLogin }) => {
       <div className="bg-blue-300 sm:w-[20rem] lg:w-[70rem] absolute top-0 left-0 bottom-0 -ml-28 opacity-40" />
       <img src={truck} alt="truck" className="w-full z-10 h-auto" />
       <div className="flex flex-col justify-center items-start mr-36 z-20 relative">
-        <h1 className="text-4xl">Login</h1>
+        <h1 className="text-h1">Login</h1>
         <ReusableForm
           fields={fields}
           onSubmit={onSubmit}

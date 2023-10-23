@@ -15,11 +15,11 @@ const ZoneInformation = () => {
         <Link to="/ZoneTracker">
           <FontAwesomeIcon
             icon={faAngleLeft}
-            className=" text-4xl p-5 font-medium"
+            className=" text-h1 p-5 font-medium"
           />
           </Link>
         </button>
-        <h1 className="text-4xl p-5 font-medium"> Zone Information</h1>
+        <h1 className="text-h1 p-5 font-medium"> Zone Information</h1>
       </div>
 
       <main className="flex flex-row justify-normal">

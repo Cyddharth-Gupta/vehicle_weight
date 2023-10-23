@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from './Pages/LoginPage';
 import ZoneTracker from './Pages/ZoneTracker';
 import WeighingTracker from './Pages/WeighingTracker';
+
+import NavigationDrawer from './Components/NavigationDrawer';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStatus } from './redux_store/slice/userInfoSlice';
 import { setLoginStatus } from './redux_store/slice/userInfoSlice';
+
 
 const App = () => {
   //const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,7 +26,7 @@ const isLoggedIn = useSelector(loginStatus);
          <WeighingTracker />
         </>
       ) : (
-        <LoginPage onLogin={handleLogin} />
+        <LoginPage  onLogin = {handleLogin} />
       )}
     </div>
   );

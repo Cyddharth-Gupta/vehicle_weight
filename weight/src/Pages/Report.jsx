@@ -34,11 +34,11 @@ const Report = () => {
               <Link to ="/UserTracker">
               <FontAwesomeIcon
                 icon={faAngleLeft}
-                className=" text-4xl font-medium mb-5 ml-3"
+                className=" text-h1 font-medium mb-5 ml-3"
               />
               </Link>
             </button>
-            <h1 className="text-4xl p-7">Report</h1>
+            <h1 className="text-h1 p-7">Report</h1>
           </div>
           <button
             className="items-end m-8 rounded-lg px-10 py-4 text-white bg-[#6759FF] hover:bg-[#5549CC]"
