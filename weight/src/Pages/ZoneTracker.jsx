@@ -14,7 +14,7 @@ const ZoneTracker = () => {
       <div className="bg-[#F0F0F0] w-full h-full flex flex-col min-h-screen">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
-          <h1 className="text-4xl p-7">Zone Tracker</h1>
+          <h1 className="text-h1 p-7">Zone Tracker</h1>
           </div>
           <button className="items-end m-8 rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]">
           <AddIcon className="mr-2"/>

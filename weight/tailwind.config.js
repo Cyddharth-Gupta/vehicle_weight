@@ -9,6 +9,18 @@ module.exports = {
     extend: {
       snackbarClasses: "bg-blue-500 text-white"
     },
+    fontFamily: {
+      'inter': ['Inter', 'sans'],
+    },
+    fontSize: {
+      'h1': '2rem', 
+      'xs': '0.75rem',
+      'sm': '0.875rem',
+      'base': '1rem',
+      'lg': '1.25rem',
+      'xl': '1.25rem',
+      '2xl': '1.5rem',
+    },
     screens: {
       'sm': '640px', // Small screens
       'md': '768px', // Medium screens

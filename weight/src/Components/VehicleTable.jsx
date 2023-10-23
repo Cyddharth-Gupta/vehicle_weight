@@ -23,15 +23,15 @@ const VehicleTable = () => {
 
 
   const columns = [
-    {
-      field: "vehicleId",
-      headerName: "Vehicle ID",
-      flex: 1,
-      headerAlign: "center",
-      align: "left",
-      type:"number",
-      maxLength:"20",
-    },
+    // {
+    //   field: "vehicleId",
+    //   headerName: "Vehicle ID",
+    //   flex: 1,
+    //   headerAlign: "center",
+    //   align: "left",
+    //   type:"number",
+    //   maxLength:"20",
+    // },
     {
       field: "rfidNumber",
       headerName: "RFID Number",
@@ -100,7 +100,7 @@ const VehicleTable = () => {
   ];
 
   return (
-    <div style={{ height: "100%" }} className="mx-20">
+    <div style={{ height: "100%" }} className="mx-20 inter-font">
       <DataGrid
         rows={mappedData}
         rowHeight={80}

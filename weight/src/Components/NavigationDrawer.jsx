@@ -33,6 +33,7 @@ const NavigationDrawer = () => {
           },
         }
       );
+      window.close();
 
       return res.data;
     } catch (error) {
@@ -74,7 +75,6 @@ const NavigationDrawer = () => {
         </Button>
 
         <Button
-          to="/Logout"
           icon={faArrowRightFromBracket}
           className="text-red-600"
           onClick={handleLogOut}

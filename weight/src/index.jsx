@@ -63,10 +63,6 @@ const router = createBrowserRouter([
     path: "/WeighingInformation",
     element: <WeighingInformation />,
   },
-  {
-    path: "/LogOut",
-    element: <LoginPage />,
-  },
 ]);
 
 function render() {
