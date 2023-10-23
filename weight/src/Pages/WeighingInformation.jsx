@@ -188,6 +188,7 @@ const WeighingInformation = () => {
       type: "number",
       required: true,
       maxLength: 20,
+      readOnly: true,
     },
     {
       name: "tareWeight",
@@ -196,6 +197,7 @@ const WeighingInformation = () => {
       required: true,
       maxLength: 50,
       value: tareWeight,
+      readOnly: true,
     },
     {
       name: "netWeight",
@@ -203,6 +205,7 @@ const WeighingInformation = () => {
       type: "number",
       required: true,
       maxLength: 20,
+      readOnly: true,
     },
     {
       name: "vehicleType",

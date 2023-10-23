@@ -52,7 +52,7 @@ const LoginPage = ({ onLogin }) => {
   const custombuttonclass = "px-36 m-6";
   return (
     <div className="flex flex-row justify-evenly h-screen relative">
-      <div className="bg-blue-300 w-[70rem] absolute top-0 left-0 bottom-0 -ml-28 opacity-40" />
+      <div className="bg-blue-300 sm:w-[20rem] lg:w-[70rem] absolute top-0 left-0 bottom-0 -ml-28 opacity-40" />
       <img src={truck} alt="truck" className="w-full z-10 h-auto" />
       <div className="flex flex-col justify-center items-start mr-36 z-20 relative">
         <h1 className="text-4xl">Login</h1>

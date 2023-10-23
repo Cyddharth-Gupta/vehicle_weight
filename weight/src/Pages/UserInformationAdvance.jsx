@@ -53,12 +53,6 @@ const UserInformationAdvance = () => {
       enqueueSnackbar("Form submission failed.", { variant: "error" });
       console.log(error);
     }
-    // console.log(formDataObject);
-    // const form = event.target;
-    // form.reset();
-    // console.log(formDataObject);
-    // const form = event.target;
-    // form.reset();
   };
 
   const fields = [
@@ -80,7 +74,7 @@ const UserInformationAdvance = () => {
 
   return (
       <main className="flex flex-row justify-center items-center mt-40">
-        <img src={glass} alt={"magnifying glass"} />
+        <img src={glass} alt={"magnifying glass"} className="w-auto h-auto" />
         <ReusableForm
           onSubmit={onSubmit}
           fields={fields}
