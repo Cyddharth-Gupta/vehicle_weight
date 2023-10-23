@@ -23,16 +23,17 @@ const NavigationDrawer = () => {
   const handleLogOut = async () => {
     try {
       dispatch(setLoginStatus(false));
-      localStorage.clear();
+      console.log(JSON.stringify({ userId: storedUserData?.data?.userData?.userId}));
       const res = await axios.post(
         "http://[::1]:3000/users/logout",
-        user?.data.userData,
+        JSON.stringify({ userId: storedUserData?.data?.userData?.userId }),
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+      localStorage.clear();
       window.close();
 
       return res.data;

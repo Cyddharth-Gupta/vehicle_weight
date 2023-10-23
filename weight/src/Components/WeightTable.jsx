@@ -108,12 +108,15 @@ const WeightTable = () => {
 
   React.useEffect(() => {
     //if (storedUserData && storedUserData?.data?.userData?.userType) {
-     storedUserData?.data?.userData?.zone?.zoneId && dispatch(
-        fetchWeightTracker({zoneId: storedUserData?.data?.userData?.zone?.zoneId})
+    storedUserData?.data?.userData?.zone?.zoneId &&
+      dispatch(
+        fetchWeightTracker({
+          zoneId: storedUserData?.data?.userData?.zone?.zoneId,
+        })
       );
-      //console.log("local storage", storedUserData);
-   // }
-  }, []);
+    //console.log("local storage", storedUserData);
+    // }
+  }, [storedUserData?.data?.userData?.zone?.zoneId]);
   console.log(storedUserData?.data?.userData?.zone?.zoneId);
 
   const formatDateToDDMMYYYY = (date) => {
