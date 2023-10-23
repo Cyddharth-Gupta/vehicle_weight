@@ -25,32 +25,24 @@ const WeighingInformation = () => {
   const dispatch = useDispatch();
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
 
-  const [grossWeight, setGrossWeight] = React.useState("");
-  const socket = io("http://localhost:3001");
+  const [grossWeight, setGrossWeight] = React.useState(null);
 
   React.useEffect(() => {
-    
+    // Connect to the Socket.io server
+    const socket = io("http://localhost:3001"); // Replace with your server's host
 
-    // Log when the socket connects
-    socket.on("connect", () => {
-      console.log("Socket connected");
+    // Listen for the "weighing-bridge-data" event
+    socket.on("weighing-bridge-data", (receivedData) => {
+      setGrossWeight(receivedData.data);
     });
 
-    socket.on("weighing-bridge-data", (data) => {
-      console.log("Received gross weight data:", data);
-      setGrossWeight(data);
-    });
-console.log("on");
-    socket.on("disconnect", () => {
-      console.log("Socket disconnected");
-    });
-    console.log("not on");
-
+    // Clean up the socket connection when the component unmounts
     return () => {
-      console.log("Cleaning up socket...");
       socket.disconnect();
     };
-  }, []);
+  }, []); // The e
+
+  console.log(grossWeight);
 
   React.useEffect(() => {
     dispatch(
