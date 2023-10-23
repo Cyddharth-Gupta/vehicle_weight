@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DataHandler from '../Components/DataHandler';
 import Papa from "papaparse";
+import axios from "axios";
 
 const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
   const fileInputRef = useRef(null);
@@ -29,6 +30,8 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
     setUploadFailed(false);
   };
 
+ 
+
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
     setSelectedFiles((prevSelectedFiles) => [
@@ -45,6 +48,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
         const csvData = e.target.result;
         const jsonData = parseCSVToJSON(csvData);
         console.log(jsonData); // Do something with the parsed JSON data
+        jsonData && jsonData.map((file) => handlePostRequest(file));
       };
       reader.readAsText(files[0]);
     }
@@ -108,6 +112,8 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
       return;
     }
 
+    
+
     const uploadNextFile = () => {
       if (completedFiles === totalFiles) {
         // All files have been uploaded
@@ -116,6 +122,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
         handleFileUpload(uploadedFiles);
       } else {
         const file = selectedFiles[completedFiles];
+        console.log(file);
 
         // Simulate file processing here
         setTimeout(() => {
@@ -135,6 +142,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
 
     // Start the upload process
     uploadNextFile();
+    console.log("start post request");
   };
 
   return (

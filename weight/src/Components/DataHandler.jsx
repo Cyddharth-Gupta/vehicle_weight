@@ -2,6 +2,32 @@ import React, { useEffect } from "react";
 import axios from "axios";
 
 const DataHandler = ({ selectedFiles }) => {
+  const passedStatus = [];
+
+  const handlePostRequest = async (file) => {
+    try {
+      console.log("called");
+      const res = await axios.post(
+        "http://[::1]:3000/weighing-data",
+        JSON.stringify(file),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.status);
+      if (res.status === 200) {
+        passedStatus.push("success");
+      } else {
+        passedStatus.push("failed");
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDataAndSubmit = () => {
     if (selectedFiles.length === 0) {
       return;
@@ -14,7 +40,7 @@ const DataHandler = ({ selectedFiles }) => {
       if (file.type === "application/json") {
         const reader = new FileReader();
 
-        reader.onload = (event) => {
+        reader.onload = async (event) => {
           try {
             const jsonData = JSON.parse(event.target.result);
 
@@ -27,6 +53,11 @@ const DataHandler = ({ selectedFiles }) => {
             if (uploadedFiles.length === totalFiles) {
               // All JSON files have been processed
               // Call your API to submit the data
+              console.log(uploadedFiles);
+              await uploadedFiles[0]?.data.map((file) =>
+                handlePostRequest(file)
+              );
+              console.log(passedStatus);
             }
           } catch (error) {
             console.error("Error parsing JSON file:", error);
