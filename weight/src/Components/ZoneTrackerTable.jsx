@@ -114,6 +114,7 @@ export default function ZoneTrackerTable() {
       <DataGrid
         rows={mappedData}
         rowHeight={80}
+        fontSize= "105px"
         columns={columns}
         initialState={{
           pagination: {

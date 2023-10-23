@@ -194,7 +194,7 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
             >
               <CloseIcon />
             </button>
-            <h1 className="text-3xl p-3 mb-4">Request Report</h1>
+            <h1 className="text-h1 p-3 mb-4">Request Report</h1>
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="flex flex-row items-center justify-center">
                 <div>

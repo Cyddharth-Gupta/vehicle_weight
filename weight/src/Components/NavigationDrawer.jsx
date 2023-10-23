@@ -29,7 +29,7 @@ const NavigationDrawer = () => {
           },
         }
       );
-      localStorage.removeItem("userIdData");
+      window.close();
       return res.data;
     } catch (error) {
       console.log(error);
@@ -70,7 +70,6 @@ const NavigationDrawer = () => {
         </Button>
 
         <Button
-          to="/Logout"
           icon={faArrowRightFromBracket}
           className="text-red-600"
           onClick={() => handleLogOut()}

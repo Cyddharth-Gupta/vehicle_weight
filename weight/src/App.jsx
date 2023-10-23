@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from './Pages/LoginPage';
 import ZoneTracker from './Pages/ZoneTracker';
 import WeighingTracker from './Pages/WeighingTracker';
+import NavigationDrawer from './Components/NavigationDrawer';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +18,7 @@ const App = () => {
          <WeighingTracker />
         </>
       ) : (
-        <LoginPage onLogin={handleLogin} />
+        <LoginPage  onLogin = {handleLogin} />
       )}
     </div>
   );
