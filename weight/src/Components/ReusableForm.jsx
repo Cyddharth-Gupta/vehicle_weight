@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const ReusableForm = ({
   onSubmit,
   fields,
@@ -10,6 +11,7 @@ const ReusableForm = ({
   customInputClass,
   customLabelClass,
   customSelectClass,
+  cancelLink,
   optionsList,
 }) => {
   return (
@@ -61,7 +63,9 @@ const ReusableForm = ({
             type="button"
             className={`${customButtonClass} px-12 py-2 text-[#6759FF] border border-[#6759FF] hover:bg-gray-200`}
           >
+            <Link to={cancelLink}>
             Cancel
+            </Link>
           </button>
         )}
         <button

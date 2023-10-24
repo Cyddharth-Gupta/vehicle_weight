@@ -90,6 +90,7 @@ const EditableUserInformation = () => {
             errors={errors}
             showCancel={true}
             submitButtonLabel={"Proceed"}
+            cancelLink={'/UserTracker'}
           />
         </main>
       </div>

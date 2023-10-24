@@ -123,6 +123,7 @@ const ZoneInformationGeneral = () => {
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
         optionsList={optionsList}
+        cancelLink={'/ZoneTracker'}
       />
     </main>
   );

@@ -143,6 +143,7 @@ const ZoneInformationAdvance = () => {
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
         customClass={customClass}
+        cancelLink={'/ZoneTracker'}
       />
     </main>
   );
