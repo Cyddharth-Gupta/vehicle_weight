@@ -12,11 +12,11 @@ import LoginPage from "./Pages/LoginPage";
 import ZoneTracker from "./Pages/ZoneTracker";
 import UserInformation from "./Pages/UserInformation";
 import WeighingTracker from "./Pages/WeighingTracker";
-import Rfid from "./Pages/WeighingInformation";
 import VehicleTracker from "./Pages/VehicleTracker";
 import { Provider } from "react-redux";
 import { store } from "./redux_store/store";
-import { pink } from "@mui/material/colors";
+import EditableUserInformation from "./Pages/EditableUserInformation";
+
 
 const router = createBrowserRouter([
   {
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
     element: <VehicleTracker />,
   },
   {
-    path: "/Rfid",
-    element: <Rfid />,
+    path: "/EditableUserInformation",
+    element: <EditableUserInformation />,
   },
   {
     path: "/UserTracker",
