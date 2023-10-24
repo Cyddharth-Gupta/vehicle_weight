@@ -59,6 +59,13 @@ const EditableUserInformation = () => {
       maxLength: 200,
     },
     {
+      name: "dob",
+      label: "Date Of Bitrh",
+      type: "date",
+      required: true,
+      maxLength: 200,
+    },
+    {
       name: "userType",
       label: "User Type",
       type: "select",

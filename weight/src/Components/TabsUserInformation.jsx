@@ -1,14 +1,15 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import SwipeableViews from "react-swipeable-views-react-18-fix"
-import { useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import PropTypes from "prop-types";
+import SwipeableViews from "react-swipeable-views-react-18-fix";
+import { useTheme } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import UserInformationAdvance from "../Pages/UserInformationAdvance";
-import UserInformationGeneral from '../Pages/UserInformationGeneral';
+import UserInformationGeneral from "../Pages/UserInformationGeneral";
+import ReusableForm from "./ReusableForm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,7 +40,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
@@ -55,35 +56,53 @@ export default function TabsUserInformation() {
     setValue(index);
   };
 
+  // Function to change the tab
+  const changeTab = (newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <div className='mt-8'>
-    <Box sx={{ bgcolor: 'transparent', width: "100%" }}>
-      <AppBar position="static" sx={{ bgcolor: 'transparent', width:"30%"}}  elevation= {0} >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="secondary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+    <div className="mt-8">
+      <Box sx={{ bgcolor: "transparent", width: "100%" }}>
+        <AppBar
+          position="static"
+          sx={{ bgcolor: "transparent", width: "30%" }}
+          elevation={0}
         >
-          <Tab label="General" {...a11yProps(0)}  sx={{ marginLeft: 4 }} />
-          <Tab label="Advanced" {...a11yProps(1)}   sx={{ marginLeft: 4 }}/>
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction} >
-       <UserInformationGeneral />
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-        <UserInformationAdvance />
-        </TabPanel>
-      </SwipeableViews>
-    </Box>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            textColor="secondary"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label="General" {...a11yProps(0)} sx={{ marginLeft: 4 }} />
+            <Tab
+              label="Advanced"
+              {...a11yProps(1)}
+              sx={{ marginLeft: 4 }}
+              disabled={value === 0}
+            />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            <UserInformationGeneral
+              changeTab={(newValue) => changeTab(newValue)}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <UserInformationAdvance
+              changeTab={(newValue) => changeTab(newValue)}
+            />
+          </TabPanel>
+        </SwipeableViews>
+      </Box>
     </div>
   );
 }
