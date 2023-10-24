@@ -97,6 +97,7 @@ export default function UserTrackerTable() {
   }, []);
 
   const userTracker = useSelector(userTrackerData) || [];
+  console.log(userTracker);
 
   const formatDateToDDMMYYYY = (date) => {
     const day = date.getDate().toString().padStart(2, "0");
@@ -109,6 +110,8 @@ export default function UserTrackerTable() {
   const mappedData = userTracker.map((item) => ({
     id: item.userId,
     avatar: "",
+    fullName: item.fullName,
+    userType: item.userType,
     name: item.username,
     zone: "West",
     employeeId: item.employeeId,
