@@ -64,6 +64,7 @@ const UserInformationGeneral = () => {
         errors={errors}
         showCancel={true}
         submitButtonLabel={"Proceed"}
+        cancelLink={'/UserTracker'}
       />
     </main>
   );

@@ -81,6 +81,7 @@ const UserInformationAdvance = () => {
           errors={errors}
           showCancel={true}
           submitButtonLabel={"Submit"}
+          cancelLink={'/UserTracker'}
         />
       </main>
   );

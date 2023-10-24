@@ -265,6 +265,7 @@ const WeighingInformation = () => {
               customLabelClass={customLabelClass}
               customButtonClass={customButtonClass}
               customSelectClass={customSelectClass}
+              cancelLink={'/WeighingTracker'}
               showCancel={true}
             />
             <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">
