@@ -26,6 +26,7 @@ const initialState = {
   loading: false,
   userTrackerData: [],
   userGeneralInfoData: [],
+  userEditData: null,
   error: null,
 };
 
@@ -36,6 +37,9 @@ export const userTrackerSlice = createSlice({
     userGeneralInfo: (state, action) => {
       state.userGeneralInfoData = action.payload;
     },
+    userGetEditData: (state, action) => {
+      state.userEditData = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserTracker.pending, (state) => {
@@ -56,4 +60,5 @@ export default userTrackerSlice.reducer;
 export const userTrackerData = (state) => state.userTracker.userTrackerData;
 export const userGeneralInfoData = (state) =>
   state.userTracker.userGeneralInfoData;
-export const { userGeneralInfo } = userTrackerSlice.actions;
+export const userEditData = (state) => state.userTracker.userEditData;
+export const { userGeneralInfo, userGetEditData } = userTrackerSlice.actions;

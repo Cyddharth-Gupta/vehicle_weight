@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import glass from "../assets/vehicleinformationglass.svg";
 import ReusableForm from "../Components/ReusableForm";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { userEditData } from "../redux_store/slice/userTrackerSlice";
 
 const EditableUserInformation = () => {
   const {
@@ -14,6 +16,9 @@ const EditableUserInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const data = useSelector(userEditData);
+  console.log(data);
 
   const onSubmit = (event) => {
     event.preventDefault();

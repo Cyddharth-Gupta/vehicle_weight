@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import TabsUserInformation from "../Components/TabsUserInformation";
 import { Link } from "react-router-dom";
 
-
 const UserInformation = () => {
   const {
     register,
@@ -31,7 +30,7 @@ const UserInformation = () => {
 
   const fields = [
     {
-      name: "usernam",
+      name: "username",
       label: "Username",
       type: "text",
       required: true,
@@ -52,11 +51,11 @@ const UserInformation = () => {
       <div className=" bg-[#F0F0F0] flex flex-grow w-full min-h-screen  flex-col">
         <div className="flex flex-row">
           <button>
-            <Link to = "/UserTracker">
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className=" text-h1 p-5 font-medium"
-            />
+            <Link to="/UserTracker">
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className=" text-h1 p-5 font-medium"
+              />
             </Link>
           </button>
           <h1 className="text-h1 p-5 font-medium"> User Information</h1>
