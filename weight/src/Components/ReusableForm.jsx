@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const ReusableForm = ({
   onSubmit,
-  fields,
+  fields =[],
   errors,
   showCancel,
   submitButtonLabel,
@@ -13,7 +13,9 @@ const ReusableForm = ({
   customSelectClass,
   cancelLink,
   optionsList,
+  changeTab,
 }) => {
+  // ... (existing code)
   return (
     <form className={`${customClass} flex-shrink m-16`} onSubmit={onSubmit}>
       {fields.map((field, index) => (
@@ -51,7 +53,7 @@ const ReusableForm = ({
               minLength={field.minLength}
               onChange={field.onChange}
               value={field.value}
-              readOnly={field.readOnly} 
+              readOnly={field.readOnly}
             />
           )}
         </div>
@@ -63,16 +65,15 @@ const ReusableForm = ({
             type="button"
             className={`${customButtonClass} px-12 py-2 text-[#6759FF] border border-[#6759FF] hover:bg-gray-200`}
           >
-            <Link to={cancelLink}>
-            Cancel
-            </Link>
+            <Link to={cancelLink}>Cancel</Link>
           </button>
         )}
         <button
           type="submit"
+          onClick={() => changeTab(1)} 
           className={`${customButtonClass} py-2 px-12 text-white bg-[#6759FF] hover:bg-[#5549CC]`}
         >
-        {submitButtonLabel}
+          {submitButtonLabel}
         </button>
       </div>
     </form>

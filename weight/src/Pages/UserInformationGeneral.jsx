@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { userGeneralInfo } from "../redux_store/slice/userTrackerSlice";
 import { useDispatch } from "react-redux";
 
-const UserInformationGeneral = () => {
+const UserInformationGeneral = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
     register,
@@ -47,6 +47,13 @@ const UserInformationGeneral = () => {
       maxLength: 200,
     },
     {
+      name: "dob",
+      label: "Date Of Bitrh",
+      type: "date",
+      required: true,
+      maxLength: 200,
+    },
+    {
       name: "userType",
       label: "User Type",
       type: "select",
@@ -65,6 +72,7 @@ const UserInformationGeneral = () => {
         showCancel={true}
         submitButtonLabel={"Proceed"}
         cancelLink={'/UserTracker'}
+        onChange = {props.onChange}
       />
     </main>
   );

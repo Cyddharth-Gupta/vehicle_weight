@@ -7,7 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { userGeneralInfoData } from "../redux_store/slice/userTrackerSlice";
 
-const UserInformationAdvance = () => {
+const UserInformationAdvance = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
     register,
@@ -82,6 +82,7 @@ const UserInformationAdvance = () => {
           showCancel={true}
           submitButtonLabel={"Submit"}
           cancelLink={'/UserTracker'}
+          onChange={props.onChange}
         />
       </main>
   );
