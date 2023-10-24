@@ -16,7 +16,8 @@ import VehicleTracker from "./Pages/VehicleTracker";
 import { Provider } from "react-redux";
 import { store } from "./redux_store/store";
 import EditableUserInformation from "./Pages/EditableUserInformation";
-
+import muitheme from "./Components/muitheme";
+import { ThemeProvider } from "@emotion/react";
 
 const router = createBrowserRouter([
   {
@@ -68,20 +69,22 @@ const router = createBrowserRouter([
 function render() {
   ReactDOM.render(
     <Provider store={store}>
-      <SnackbarProvider
-        maxSnack={3}
-        autoHideDuration={3000}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        className={`snackbarClasses`}
-      >
-        <SnackbarContent
-          sx={{
-            backgroundColor: "bg-pink-500", //your custom color here
-          }}
-          className="snackbarClasses"
-        />
-        <RouterProvider router={router} />
-      </SnackbarProvider>
+      <ThemeProvider theme={muitheme}>
+        <SnackbarProvider
+          maxSnack={3}
+          autoHideDuration={3000}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          className={`snackbarClasses`}
+        >
+          <SnackbarContent
+            sx={{
+              backgroundColor: "bg-pink-500", //your custom color here
+            }}
+            className="snackbarClasses"
+          />
+          <RouterProvider router={router} />
+        </SnackbarProvider>
+      </ThemeProvider>
     </Provider>,
     document.body
   );
