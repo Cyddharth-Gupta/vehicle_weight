@@ -8,6 +8,7 @@ import sakura from "../assets/sakura.jpg";
 import { fetchUserTracker } from "../redux_store/slice/userTrackerSlice";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 import {useSelector, useDispatch} from "react-redux"
+import { Link } from "react-router-dom";
 
 
 const columns = [
@@ -78,7 +79,9 @@ const columns = [
     renderCell: (cellValues) => {
         return (
           <button>
+            <Link to = "/EditableUserInformation">
             <BorderColorOutlinedIcon style={{ color: "#6759FF" }} />
+            </Link>
           </button>
         );
       },
