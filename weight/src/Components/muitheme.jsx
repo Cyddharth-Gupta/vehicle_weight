@@ -10,17 +10,6 @@ const muitheme = createTheme({
     fontFamily: "Inter, sans-serif",
     fontSize: 16.5,
   },
-  //   components: {
-  //     MuiDataGrid: {
-  //       styleOverrides: {
-  //         columnHeader: {
-  //           '@media (min-width:640px)': {
-  //           fontSize: 17.5,
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
 
   components: {
     MuiDataGrid: {

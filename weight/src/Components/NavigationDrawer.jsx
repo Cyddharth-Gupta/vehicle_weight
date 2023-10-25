@@ -43,7 +43,7 @@ const NavigationDrawer = () => {
   };
 
   return (
-    <div className="w-[20%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
+    <div className="w-[21%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
       <div className="flex  flex-col lg:flex-row h-1/5 items-center">
         <img
           src={priyanka}
@@ -56,7 +56,7 @@ const NavigationDrawer = () => {
         </span>
       </div>
 
-      <div className="w-full flex flex-col items-start">
+      <div className="w-full flex flex-col items-start xl:text-2xl 2xl:text-[1.7rem] 3xl:text-[2rem]">
         <Button to="/ZoneTracker" icon={faLocationDot}>
           Zone Tracker
         </Button>
