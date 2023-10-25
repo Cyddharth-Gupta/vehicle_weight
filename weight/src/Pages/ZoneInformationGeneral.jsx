@@ -11,7 +11,7 @@ import { zoneFormGeneralDataInfo } from "../redux_store/slice/zoneTrackerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 
-const ZoneInformationGeneral = () => {
+const ZoneInformationGeneral = (props) => {
   const {
     register,
     handleSubmit,
@@ -124,6 +124,7 @@ const ZoneInformationGeneral = () => {
         customButtonClass={customButtonClass}
         optionsList={optionsList}
         cancelLink={'/ZoneTracker'}
+        onChange = {props.changeTabprop}
       />
     </main>
   );

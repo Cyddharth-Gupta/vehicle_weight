@@ -55,6 +55,10 @@ export default function TabsZoneInformation() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+    // Function to change the tab
+    const changeTab = (newValue) => {
+      setValue(newValue);
+    };
 
   return (
     <div className='mt-8'>
@@ -78,10 +82,10 @@ export default function TabsZoneInformation() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction} >
-       <ZoneInformationGeneral />
+       <ZoneInformationGeneral changeTabprop={changeTab}  />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <ZoneInformationAdvance />
+        <ZoneInformationAdvance changeTabprop={changeTab}  />
         </TabPanel>
       </SwipeableViews>
     </Box>

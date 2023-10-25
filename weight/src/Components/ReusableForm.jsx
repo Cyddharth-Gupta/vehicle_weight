@@ -13,7 +13,7 @@ const ReusableForm = ({
   customSelectClass,
   cancelLink,
   optionsList,
-  changeTab,
+  onChange,
 }) => {
   // ... (existing code)
   return (
@@ -72,7 +72,7 @@ const ReusableForm = ({
         )}
         <button
           type="submit"
-          onClick={() => changeTab(1)}
+          onClick={() => onChange(1)}
           className={`${customButtonClass} py-2 px-12 text-white bg-[#6759FF] hover:bg-[#5549CC]`}
         >
           {submitButtonLabel}

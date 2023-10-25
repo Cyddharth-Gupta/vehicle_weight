@@ -72,7 +72,7 @@ const UserInformationGeneral = (props) => {
         showCancel={true}
         submitButtonLabel={"Proceed"}
         cancelLink={'/UserTracker'}
-        onChange = {props.onChange}
+        onChange = {props.changeTabprop}
       />
     </main>
   );
