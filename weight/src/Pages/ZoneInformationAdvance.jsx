@@ -56,7 +56,6 @@ const ZoneInformationAdvance = (props) => {
       );
       const form = event.target;
       form.reset();
-      log(res.data);
       enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {

@@ -72,7 +72,8 @@ const ReusableForm = ({
         )}
         <button
           type="submit"
-          onClick={() => onChange(1)}
+          //onClick={() => {onChange(1)}}
+          //onSubmit={onSubmit}
           className={`${customButtonClass} py-2 px-12 text-white bg-[#6759FF] hover:bg-[#5549CC]`}
         >
           {submitButtonLabel}

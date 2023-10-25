@@ -17,7 +17,20 @@ const UserInformationGeneral = (props) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (event) => {
+  const formatDate = (inputDate) => {
+    const parts = inputDate.split("-"); // Split the date into parts
+    const month = parts[1];
+    const day = parts[2];
+    const year = parts[0];
+
+    // Create a new Date object with time set to 00:00:00.000
+    const dateObject = new Date(Date.UTC(year, month - 1, day));
+    const isoString = dateObject.toISOString();
+    return isoString;
+  };
+
+  const onSubmit = async (event) => {
+    
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -25,10 +38,15 @@ const UserInformationGeneral = (props) => {
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
-    dispatch(userGeneralInfo(formDataObject));
-    console.log(formDataObject);
+    const newFormDataObject = {
+      ...formDataObject,
+      dateOfBirth: formatDate(formDataObject.dateOfBirth),
+    }
+    dispatch(userGeneralInfo(newFormDataObject));
+    console.log(newFormDataObject);
     const form = event.target;
     form.reset();
+    props.changeTabprop(1);
   };
 
   const fields = [
@@ -47,7 +65,7 @@ const UserInformationGeneral = (props) => {
       maxLength: 200,
     },
     {
-      name: "dob",
+      name: "dateOfBirth",
       label: "Date Of Bitrh",
       type: "date",
       required: true,
@@ -72,7 +90,7 @@ const UserInformationGeneral = (props) => {
         showCancel={true}
         submitButtonLabel={"Proceed"}
         cancelLink={'/UserTracker'}
-        onChange = {props.changeTabprop}
+        //onChange = {props.changeTabprop}
       />
     </main>
   );

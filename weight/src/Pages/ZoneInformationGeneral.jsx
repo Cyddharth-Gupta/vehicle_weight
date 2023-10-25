@@ -23,23 +23,22 @@ const ZoneInformationGeneral = (props) => {
 
   React.useEffect(() => {
     dispatch(fetchUserTracker());
-  },[])
+  }, []);
 
   const users = useSelector(userTrackerData) || [];
   console.log(users);
   const storedUserData = JSON.parse(localStorage.getItem("userIdData"));
   console.log(storedUserData);
 
-  const optionsList = users.map((item) => ([
+  const optionsList = users.map((item) => [
     `${item.fullName} - ${item.employeeId}`,
-     item.userId,
-  ]));
+    item.userId,
+  ]);
 
   const fetchUserId = (fullname) => {
     const userId = optionsList.find((item) => item[0] === fullname)[1];
     return userId;
-  }
-
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -52,15 +51,16 @@ const ZoneInformationGeneral = (props) => {
 
     const newFormDataObject = {
       ...formDataObject,
-      userId: fetchUserId(formDataObject.managedBy)
+      userId: fetchUserId(formDataObject.managedBy),
     };
 
     delete newFormDataObject.managedBy;
 
     dispatch(zoneFormGeneralDataInfo(newFormDataObject));
     console.log(newFormDataObject);
-      const form = event.target;
-      form.reset();
+    const form = event.target;
+    form.reset();
+    props.changeTabprop(1);
   };
 
   const fields = [
@@ -123,8 +123,8 @@ const ZoneInformationGeneral = (props) => {
         customInputClass={customInputClass}
         customButtonClass={customButtonClass}
         optionsList={optionsList}
-        cancelLink={'/ZoneTracker'}
-        onChange = {props.changeTabprop}
+        cancelLink={"/ZoneTracker"}
+        //onChange = {props.changeTabprop}
       />
     </main>
   );
