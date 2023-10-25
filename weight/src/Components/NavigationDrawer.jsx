@@ -43,7 +43,7 @@ const NavigationDrawer = () => {
   };
 
   return (
-    <div className="w-[21%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
+    <div className="w-[21%] 3xl:w-[15%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
       <div className="flex  flex-col lg:flex-row h-1/5 items-center">
         <img
           src={priyanka}
@@ -52,7 +52,7 @@ const NavigationDrawer = () => {
         />
         <span>
           <h4>{storedUserData?.data?.userData?.fullName}</h4>
-          <p className="text-xs lg:text-md ">priyankachopra@gmail.com</p>
+          <p className="text-xs lg:text-md xl:text-xl 2xl:text-[1.7rem] 3xl:text-[2rem]">priyankachopra@gmail.com</p>
         </span>
       </div>
 
