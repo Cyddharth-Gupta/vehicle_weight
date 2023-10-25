@@ -1,5 +1,4 @@
 import React from "react";
-import { useSnackbar } from "notistack";
 import truck from "../assets/vehicleinformationtruck.svg";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
@@ -9,7 +8,6 @@ import Headers from "../Components/Headers";
 
 
 const VehicleInformation = () => {
-  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -38,12 +36,10 @@ const VehicleInformation = () => {
       );
       const form = event.target;
       form.reset();
-      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
-      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
   };
 

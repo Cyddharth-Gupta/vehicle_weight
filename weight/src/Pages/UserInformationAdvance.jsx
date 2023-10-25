@@ -1,5 +1,4 @@
 import React from "react";
-import { useSnackbar } from "notistack";
 import ReusableForm from "../Components/ReusableForm";
 import glass from "../assets/vehicleinformationglass.svg";
 import { useForm } from "react-hook-form";
@@ -8,7 +7,6 @@ import { useSelector } from "react-redux";
 import { userGeneralInfoData } from "../redux_store/slice/userTrackerSlice";
 
 const UserInformationAdvance = (props) => {
-  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -47,10 +45,8 @@ const UserInformationAdvance = (props) => {
       const form = event.target;
       form.reset();
       console.log(res.data);
-      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
-      enqueueSnackbar("Form submission failed.", { variant: "error" });
       console.log(error);
     }
   };

@@ -56,6 +56,27 @@ const muitheme = createTheme({
         },
       },
     },
+    MuiSnackbar: {
+      variants: [
+        {
+          props: { variant: "hey" },
+          style: {
+             "& .SnackbarItem-variantSuccess": {
+              background: "white !important",
+              color: "purple"
+            },
+          },
+        },
+        {
+          props: { variant: "error" },
+          style: {
+            "& .MuiSnackbarContent-root": {
+              background: "red",
+            },
+          },
+        },
+      ],
+    },
   },
 });
 
