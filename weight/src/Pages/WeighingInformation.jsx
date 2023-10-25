@@ -247,11 +247,11 @@ const WeighingInformation = () => {
               <Link to="/WeighingTracker">
                 <FontAwesomeIcon
                   icon={faAngleLeft}
-                  className=" text-h1 p-5 font-medium"
+                  className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"
                 />
               </Link>
             </button>
-            <h1 className="text-h1 p-5 font-medium"> Weighing Information </h1>
+            <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"> Weighing Information </h1>
           </div>
 
           <main className="flex flex-row justify-normal ">
