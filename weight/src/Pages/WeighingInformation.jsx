@@ -2,11 +2,8 @@ import React from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import Headers from "../Components/Headers";
 import NavigationDrawer from "../Components/NavigationDrawer";
-import RFIDtruck from "../assets/RFIDtruck.svg";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWeightInfo } from "../redux_store/slice/weightInfoSlice";
@@ -242,17 +239,11 @@ const WeighingInformation = () => {
       <div className="flex flex-row">
         <NavigationDrawer />
         <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
-          <div className="flex flex-row">
-            <button>
-              <Link to="/WeighingTracker">
-                <FontAwesomeIcon
-                  icon={faAngleLeft}
-                  className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"
-                />
-              </Link>
-            </button>
-            <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"> Weighing Information </h1>
-          </div>
+          <Headers
+            header="Weighing Information"
+            showBackButton={true}
+            Linkbackto="/WeighingTracker"
+          />
 
           <main className="flex flex-row justify-normal ">
             <ReusableForm
@@ -266,7 +257,7 @@ const WeighingInformation = () => {
               customLabelClass={customLabelClass}
               customButtonClass={customButtonClass}
               customSelectClass={customSelectClass}
-              cancelLink={'/WeighingTracker'}
+              cancelLink={"/WeighingTracker"}
               showCancel={true}
             />
             <div className="bg-white shadow-lg rounded-md p-6 h-1/2 text-center items-center w-[32rem] mr-6 ml-4 mt-20">

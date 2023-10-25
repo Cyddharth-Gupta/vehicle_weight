@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userEditData } from "../redux_store/slice/userTrackerSlice";
 import axios from "axios";
+import Headers from "../Components/Headers";
 
 const EditableUserInformation = () => {
   const {
@@ -46,17 +47,17 @@ const EditableUserInformation = () => {
   const changeDobFormat = (dob) => {
     console.log(dob);
     let parts = "";
-    if(newEditData?.dob !== undefined) {
+    if (newEditData?.dob !== undefined) {
       parts = dob.split("/");
     }
     const day = parts[0];
     const month = parts[1];
     const year = parts[2];
-    
+
     const newDob = `${year}-${month}-${day}`;
     console.log(newDob);
     return newDob;
-  }
+  };
 
   const formatFromDate = (inputDate) => {
     const parts = inputDate.split("-"); // Split the date into parts
@@ -89,17 +90,20 @@ const EditableUserInformation = () => {
     console.log(newFormDataObject);
 
     try {
-      const res = await axios.patch(`http://[::1]:3000/users/${newEditData?.id}`, JSON.stringify(newFormDataObject), {
-        headers: {
-          "Content-Type": "application/json",
+      const res = await axios.patch(
+        `http://[::1]:3000/users/${newEditData?.id}`,
+        JSON.stringify(newFormDataObject),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
+      );
       console.log(res.status);
       return res;
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   const fields = newEditData && [
@@ -159,20 +163,14 @@ const EditableUserInformation = () => {
   ];
 
   return (
-    <div className="flex flex-row min-h-full">
+    <div className="flex flex-row">
       <NavigationDawer />
-      <div className=" bg-[#F0F0F0] flex flex-grow w-full min-h-screen  flex-col">
-        <div className="flex flex-row">
-          <button>
-            <Link to="/UserTracker">
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7"
-              />
-            </Link>
-          </button>
-          <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"> User Information</h1>
-        </div>
+      <div className="bg-[#F0F0F0] w-full h-full flex flex-col min-h-screen">
+        <Headers
+          header="User Information"
+          showBackButton={true}
+          Linkbackto="/UserTracker"
+        />
         <main className="flex flex-row justify-center items-center mt-36">
           <img src={glass} alt={"magnifying glass"} className="h-auto w-auto" />
           <ReusableForm
