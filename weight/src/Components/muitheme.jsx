@@ -30,6 +30,9 @@ const muitheme = createTheme({
           "@media (min-width:3500px)": {
             fontSize: 26.5,
           },
+          "@media (min-width:4500px)": {
+            fontSize: 30.5,
+          },
         },
         cell: {
           "@media (min-width:640px)": {
@@ -46,6 +49,9 @@ const muitheme = createTheme({
           },
           "@media (min-width:3500px)": {
             fontSize: 25.5,
+          },
+          "@media (min-width:4500px)": {
+            fontSize: 28.5,
           },
         },
       },
