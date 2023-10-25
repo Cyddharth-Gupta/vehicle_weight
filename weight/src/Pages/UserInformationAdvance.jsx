@@ -73,7 +73,7 @@ const UserInformationAdvance = (props) => {
   ];
 
   return (
-      <main className="flex flex-row justify-center items-center mt-40">
+      <main className="flex flex-row justify-center items-center">
         <img src={glass} alt={"magnifying glass"} className="w-auto h-auto" />
         <ReusableForm
           onSubmit={onSubmit}

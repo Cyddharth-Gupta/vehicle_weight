@@ -48,7 +48,7 @@ const FileUploadModal = ({ isOpen, onRequestClose, handleFileUpload }) => {
         const csvData = e.target.result;
         const jsonData = parseCSVToJSON(csvData);
         console.log(jsonData); // Do something with the parsed JSON data
-        jsonData && jsonData.map((file) => handlePostRequest(file));
+        //jsonData && jsonData.map((file) => handlePostRequest(file));
       };
       reader.readAsText(files[0]);
     }

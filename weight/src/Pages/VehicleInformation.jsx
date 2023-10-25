@@ -3,11 +3,10 @@ import { useSnackbar } from "notistack";
 import truck from "../assets/vehicleinformationtruck.svg";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import Headers from "../Components/Headers";
+
 
 const VehicleInformation = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -30,7 +29,7 @@ const VehicleInformation = () => {
     try {
       const res = await axios.post(
         "http://[::1]:3000/vehicles",
-       JSON.stringify(formDataObject),
+        JSON.stringify(formDataObject),
         {
           headers: {
             "Content-Type": "application/json",
@@ -88,17 +87,11 @@ const VehicleInformation = () => {
     <div className="flex flex-row">
       <NavigationDrawer />
       <div className="bg-[#F0F0F0] w-full min-h-screen flex flex-col">
-        <div className="flex flex-row">
-          <button>
-            <Link to ="/VehicleTracker">
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"
-            />
-            </Link>
-          </button>
-          <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"> Vehicle Information</h1>
-        </div>
+        <Headers
+          header="Vehicle Information"
+          showBackButton={true}
+          Linkbackto="/VehicleTracker"
+        />
 
         <main className="flex flex-row justify-normal ">
           <img src={truck} alt="truck" className="-ml-70 h-auto w-auto" />
@@ -113,7 +106,6 @@ const VehicleInformation = () => {
             customButtonClass={customButtonClass}
             customSelectClass={customSelectClass}
             customClass={customClass}
-
           />
         </main>
       </div>

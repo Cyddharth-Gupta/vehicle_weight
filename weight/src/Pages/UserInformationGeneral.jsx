@@ -33,6 +33,7 @@ const UserInformationGeneral = (props) => {
     
     event.preventDefault();
     const formData = new FormData(event.target);
+    console.log("hey")
 
     const formDataObject = {};
     formData.forEach((value, key) => {
@@ -81,7 +82,7 @@ const UserInformationGeneral = (props) => {
   ];
 
   return (
-    <main className="flex flex-row justify-center items-center mt-36">
+    <main className="flex flex-row justify-center items-center ">
       <img src={glass} alt={"magnifying glass"} className="h-auto w-auto"/>
       <ReusableForm
         onSubmit={onSubmit}
