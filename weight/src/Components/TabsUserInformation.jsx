@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
 import { useTheme } from "@mui/material/styles";
@@ -46,7 +47,7 @@ function a11yProps(index) {
 
 export default function TabsUserInformation() {
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,14 +93,10 @@ export default function TabsUserInformation() {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <UserInformationGeneral
-              changeTab={(newValue) => changeTab(newValue)}
-            />
+            <UserInformationGeneral changeTabprop={changeTab} />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <UserInformationAdvance
-              changeTab={(newValue) => changeTab(newValue)}
-            />
+            <UserInformationAdvance changeTabprop={changeTab} />
           </TabPanel>
         </SwipeableViews>
       </Box>

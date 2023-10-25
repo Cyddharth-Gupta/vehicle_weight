@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 
-const ZoneInformationAdvance = () => {
+const ZoneInformationAdvance = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
     register,
@@ -144,6 +144,7 @@ const ZoneInformationAdvance = () => {
         customButtonClass={customButtonClass}
         customClass={customClass}
         cancelLink={'/ZoneTracker'}
+        onChange = {props.changeTabprop}
       />
     </main>
   );
