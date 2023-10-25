@@ -47,7 +47,7 @@ const Headers = (props) => {
       <div className="flex flex-row">
         {props.showAddButton && (
           <Link to={props.addPage}>
-            <button className="items-end m-8 mr-8 flex flex-row rounded-lg px-10 py-4 text-white bg-[#6759FF] hover:bg-[#5549CC]">
+            <button className="items-end m-8 mr-6 flex flex-row rounded-lg px-10 py-4 text-white bg-[#6759FF] hover:bg-[#5549CC]">
               <AddIcon className="mr-2" />
               {props.addWhat}
             </button>
