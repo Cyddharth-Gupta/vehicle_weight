@@ -71,20 +71,20 @@ const columns = [
       );
     },
   },
-  {
-    field: "actions",
-    headerName: "Actions",
-    flex: 1,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (cellValues) => {
-      return (
-        <button>
-          <BorderColorOutlinedIcon style={{ color: "#6759FF" }} />
-        </button>
-      );
-    },
-  },
+  // {
+  //   field: "actions",
+  //   headerName: "Actions",
+  //   flex: 1,
+  //   headerAlign: "center",
+  //   align: "center",
+  //   renderCell: (cellValues) => {
+  //     return (
+  //       <button>
+  //         <BorderColorOutlinedIcon style={{ color: "#6759FF" }} />
+  //       </button>
+  //     );
+  //   },
+  // },
 ];
 
 export default function ZoneTrackerTable() {

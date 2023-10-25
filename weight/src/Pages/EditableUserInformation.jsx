@@ -167,11 +167,11 @@ const EditableUserInformation = () => {
             <Link to="/UserTracker">
               <FontAwesomeIcon
                 icon={faAngleLeft}
-                className=" text-h1 p-5 font-medium"
+                className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7"
               />
             </Link>
           </button>
-          <h1 className="text-h1 p-5 font-medium"> User Information</h1>
+          <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium"> User Information</h1>
         </div>
         <main className="flex flex-row justify-center items-center mt-36">
           <img src={glass} alt={"magnifying glass"} className="h-auto w-auto" />
@@ -180,7 +180,7 @@ const EditableUserInformation = () => {
             fields={fields}
             errors={errors}
             showCancel={true}
-            submitButtonLabel={"Proceed"}
+            submitButtonLabel={"Confirm"}
             cancelLink={"/UserTracker"}
           />
         </main>

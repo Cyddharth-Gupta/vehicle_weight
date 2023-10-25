@@ -1,4 +1,4 @@
-import priyanka from "../assets/priyanka.jpg";
+import avatar from "../assets/avatar.jpg";
 import React from "react";
 import Button from "./Button";
 import {
@@ -46,13 +46,13 @@ const NavigationDrawer = () => {
     <div className="w-[21%] 3xl:w-[15%] min-h-full flex flex-col flex-shrink -mt-6 p-6 z-10 bg-white ">
       <div className="flex  flex-col lg:flex-row h-1/5 items-center">
         <img
-          src={priyanka}
-          alt="Priyanka"
+          src={avatar}
+          alt="avatar"
           className="w-20 h-20 rounded-full m-3 ml-1"
         />
         <span>
           <h4>{storedUserData?.data?.userData?.fullName}</h4>
-          <p className="text-xs lg:text-md xl:text-xl 2xl:text-[1.7rem] 3xl:text-[2rem]">priyankachopra@gmail.com</p>
+          <p className="text-xs lg:text-md xl:text-xl 2xl:text-[1.7rem] 3xl:text-[2rem]">useremail@gmail.com</p>
         </span>
       </div>
 

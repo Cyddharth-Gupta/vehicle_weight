@@ -33,20 +33,24 @@ const VehicleTracker = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <button>
-              <Link to = "/ZoneTracker">
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className="lg:text-h1 md:text-lg xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7 font-medium mb-5 ml-3"
-              />
+              <Link to="/ZoneTracker">
+                <FontAwesomeIcon
+                  icon={faAngleLeft}
+                  className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7p-7 font-medium mb-5 ml-3"
+                />
               </Link>
             </button>
-            <h1 className="lg:text-h1 md:text-lg xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7">Vehicle Tracker</h1>
+            <h1 className="lg:text-[2rem] md:text-[1.75rem] xl:text-[2.25rem] 2xl:text-[2.5rem] 3xl:text-[3rem] p-7">
+              Vehicle Tracker
+            </h1>
           </div>
           <div className="flex flex-row">
-            <button className="items-end m-8 mr-3 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]">
-              <AddIcon className="mr-2" />
-              <Link to="/VehicleInformation">Add New</Link>
-            </button>
+            <Link to="/VehicleInformation">
+              <button className="items-end m-8 mr-3 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]">
+                <AddIcon className="mr-2" />
+                Add New
+              </button>
+            </Link>
             <button
               className="items-end m-8 flex flex-row rounded-lg px-10 py-4 text-white  bg-[#6759FF] hover:bg-[#5549CC]"
               onClick={openModal}
