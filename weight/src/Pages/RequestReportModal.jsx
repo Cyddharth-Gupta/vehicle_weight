@@ -1,5 +1,5 @@
 import React from "react";
-import { useSnackbar } from "notistack";
+import toast, { Toaster } from 'react-hot-toast';
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,7 +16,6 @@ import { recieptUrlData } from "../redux_store/slice/recieptUrlSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
-  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -93,11 +92,10 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
         }
       );
       console.log(res.data);
-      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
+
       return res.data;
     } catch (error) {
       console.log(error);
-      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
   };
 
@@ -147,10 +145,11 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
       const res = await postReport(newFormDataObject, data);
       console.log(newFormDataObject);
       const form = event.target;
+      toast.success('Form submitted successfully');
       form.reset();
-      window.alert("Form Submitted Successfully!");
       console.log(res.data);
     } catch (error) {
+      
       console.log(error);
     }
   };

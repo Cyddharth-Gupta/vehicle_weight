@@ -1,5 +1,4 @@
 import React from "react";
-import { SnackbarProvider, useSnackbar } from "notistack";
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import Headers from "../Components/Headers";
@@ -11,7 +10,6 @@ import { WeightInfoData } from "../redux_store/slice/weightInfoSlice";
 import { io } from "socket.io-client";
 
 const WeighingInformation = () => {
-  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -122,11 +120,9 @@ const WeighingInformation = () => {
       form.reset();
       console.log(res.data);
       window.alert("blahh");
-      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
       console.log(error);
-      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
   };
 

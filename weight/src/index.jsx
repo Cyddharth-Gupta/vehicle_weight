@@ -70,20 +70,9 @@ function render() {
   ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={muitheme}>
-        <SnackbarProvider
-          maxSnack={3}
-          autoHideDuration={3000}
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          className={`snackbarClasses`}
-        >
-          <SnackbarContent
-            sx={{
-              backgroundColor: "bg-pink-500", //your custom color here
-            }}
-            className="snackbarClasses"
-          />
+      
           <RouterProvider router={router} />
-        </SnackbarProvider>
+         
       </ThemeProvider>
     </Provider>,
     document.body

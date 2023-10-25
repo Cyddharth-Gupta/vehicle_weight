@@ -6,13 +6,11 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
-import { useSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
 
 const ZoneInformationAdvance = (props) => {
-  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -56,11 +54,9 @@ const ZoneInformationAdvance = (props) => {
       );
       const form = event.target;
       form.reset();
-      enqueueSnackbar("Form submitted successfully!", { variant: "success" });
       return res.data;
     } catch (error) {
       console.log(error);
-      enqueueSnackbar("Form submission failed.", { variant: "error" });
     }
 
     console.log(formDataObject);
