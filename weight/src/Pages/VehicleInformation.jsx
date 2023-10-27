@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import NavigationDrawer from "../Components/NavigationDrawer";
 import axios from "axios";
 import Headers from "../Components/Headers";
-
+import { toast } from "react-hot-toast";
 
 const VehicleInformation = () => {
   const {
@@ -14,6 +14,16 @@ const VehicleInformation = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  //const {success, error} = useToaster();
+
+  const handleSucess = () => {
+    toast.success("Form submitted successfully");
+  };
+
+  const handleError = () => {
+    toast.error("Form submission failed");
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -34,11 +44,13 @@ const VehicleInformation = () => {
           },
         }
       );
+      handleSucess();
       const form = event.target;
       form.reset();
       console.log(res.data);
       return res.data;
     } catch (error) {
+      handleError();
       console.log(error);
     }
   };

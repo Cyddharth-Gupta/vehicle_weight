@@ -18,6 +18,7 @@ import { store } from "./redux_store/store";
 import EditableUserInformation from "./Pages/EditableUserInformation";
 import muitheme from "./Components/muitheme";
 import { ThemeProvider } from "@emotion/react";
+import GlobalToast from "./Components/GlobalToast";
 
 const router = createBrowserRouter([
   {
@@ -70,9 +71,9 @@ function render() {
   ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={muitheme}>
-      
+        <GlobalToast>
           <RouterProvider router={router} />
-         
+        </GlobalToast>
       </ThemeProvider>
     </Provider>,
     document.body

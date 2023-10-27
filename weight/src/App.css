@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .toaster-color {
+    @apply bg-purple-600;
+  }
+}
