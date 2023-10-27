@@ -1,6 +1,7 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const GlobalToast = ({ children }) => {
   return (
@@ -10,9 +11,15 @@ const GlobalToast = ({ children }) => {
         reverseOrder={true}
         toastOptions={{
           success: {
-            icon: <CheckCircleIcon color="secondary" />,
+            icon: <CheckCircleIcon sx={{ color: "#A57EF7" }} />,
             style: {
               color: "#10B981",
+            },
+          },
+          error: {
+            icon: <CancelIcon sx={{ color: "#A57EF7" }} />,
+            style: {
+              color: "#EF4444",
             },
           },
         }}

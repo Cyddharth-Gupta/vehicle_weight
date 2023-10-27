@@ -6,6 +6,7 @@ import { logInUser } from "../redux_store/slice/userInfoSlice";
 import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
 import { userData } from "../redux_store/slice/userInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const LoginPage = ({onLogin}) => {
   const {
@@ -27,7 +28,6 @@ const LoginPage = ({onLogin}) => {
     });
     dispatch(logInUser(formDataObject));
     console.log(formDataObject);
-    //dispatch(getUserLoginData(formDataObject));
     onLogin();
     const form = event.target;
     form.reset();

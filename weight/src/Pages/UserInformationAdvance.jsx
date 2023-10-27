@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { userGeneralInfoData } from "../redux_store/slice/userTrackerSlice";
+import { toast } from "react-hot-toast";
 
 const UserInformationAdvance = (props) => {
   const {
@@ -43,10 +44,12 @@ const UserInformationAdvance = (props) => {
         }
       );
       const form = event.target;
+      toast.success("Form submitted successfully");
       form.reset();
       console.log(res.data);
       return res.data;
     } catch (error) {
+      toast.error("Form submission failed");
       console.log(error);
     }
   };

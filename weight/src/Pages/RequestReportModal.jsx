@@ -1,5 +1,4 @@
 import React from "react";
-import toast, { Toaster } from 'react-hot-toast';
 import ReusableForm from "../Components/ReusableForm";
 import { useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
@@ -14,6 +13,7 @@ import { userLoginData } from "../redux_store/slice/userInfoSlice";
 import { userData } from "../redux_store/slice/userInfoSlice";
 import { recieptUrlData } from "../redux_store/slice/recieptUrlSlice";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
   const {
@@ -145,11 +145,11 @@ const RequestReportModal = ({ isOpen, onRequestClose, onRequestSubmit }) => {
       const res = await postReport(newFormDataObject, data);
       console.log(newFormDataObject);
       const form = event.target;
-      toast.success('Form submitted successfully');
+      toast.success("Form submitted successfully");
       form.reset();
       console.log(res.data);
     } catch (error) {
-      
+      toast.error("Form submission failed");
       console.log(error);
     }
   };

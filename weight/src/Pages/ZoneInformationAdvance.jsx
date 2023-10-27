@@ -9,6 +9,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { zoneFormGeneralData } from "../redux_store/slice/zoneTrackerSlice";
 import { userTrackerData } from "../redux_store/slice/userTrackerSlice";
+import { toast } from "react-hot-toast";
 
 const ZoneInformationAdvance = (props) => {
   const {
@@ -54,14 +55,15 @@ const ZoneInformationAdvance = (props) => {
       );
       const form = event.target;
       form.reset();
+      toast.success("Form submitted successfully");
       return res.data;
     } catch (error) {
+      toast.error("Form submission failed");
       console.log(error);
     }
 
     console.log(formDataObject);
-    const form = event.target;
-    form.reset();
+    
   };
 
   const fields = [

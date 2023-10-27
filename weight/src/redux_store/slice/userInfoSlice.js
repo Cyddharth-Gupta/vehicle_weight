@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const logInUser = createAsyncThunk(
   "userInfo/logInUser",
@@ -23,10 +24,11 @@ export const logInUser = createAsyncThunk(
         }
       );
       console.log(response.data);
-
+      toast.success("Login Successful");
       response.data && localStorage.setItem("userIdData", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
+      toast.error("Login Failed");
       console.log(error);
     }
   }

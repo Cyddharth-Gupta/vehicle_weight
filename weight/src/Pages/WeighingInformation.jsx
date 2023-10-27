@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchWeightInfo } from "../redux_store/slice/weightInfoSlice";
 import { WeightInfoData } from "../redux_store/slice/weightInfoSlice";
 import { io } from "socket.io-client";
+import toast from "react-hot-toast";
 
 const WeighingInformation = () => {
   const {
@@ -116,12 +117,14 @@ const WeighingInformation = () => {
           },
         }
       );
+
       const form = event.target;
+      toast.success("Form submitted successfully");
       form.reset();
       console.log(res.data);
-      window.alert("blahh");
       return res.data;
     } catch (error) {
+      toast.error("Form submission failed");
       console.log(error);
     }
   };
@@ -231,7 +234,6 @@ const WeighingInformation = () => {
   const customSelectClass = "mx-14";
   const customButtonClass = "px-16 my-5";
   return (
-    <SnackbarProvider maxSnack={3}>
       <div className="flex flex-row">
         <NavigationDrawer />
         <div className="bg-[#F0F0F0] w-full h-full min-h-screen flex flex-col">
@@ -282,7 +284,6 @@ const WeighingInformation = () => {
           </main>
         </div>
       </div>
-    </SnackbarProvider>
   );
 };
 
