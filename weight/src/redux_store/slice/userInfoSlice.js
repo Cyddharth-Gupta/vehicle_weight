@@ -7,13 +7,6 @@ export const logInUser = createAsyncThunk(
   async (formData) => {
     try {
       //axios.defaults.headers.post["Content-Type"] = "application/json";
-      console.log(formData);
-      const form = {
-        username: "aman123",
-        password: "12345",
-      }
-      console.log(JSON.stringify(form));
-      console.log(JSON.stringify(formData));
       const response = await axios.post(
         "http://[::1]:3000/users/login",
         JSON.stringify(formData),
@@ -24,11 +17,11 @@ export const logInUser = createAsyncThunk(
         }
       );
       console.log(response.data);
-      toast.success("Login Successful");
+      //toast.success("Login Successful");
       response.data && localStorage.setItem("userIdData", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
-      toast.error("Login Failed");
+      //toast.error("Login Failed");
       console.log(error);
     }
   }
@@ -36,7 +29,7 @@ export const logInUser = createAsyncThunk(
 
 const initialState = {
   userInfoLoading: false,
-  userData: [],
+  userData: null,
   userLoginData: [],
   loginStatus: false,
   error: null,
@@ -73,4 +66,5 @@ export const userInfoLoading = (state) => state.userInfo.userInfoLoading;
 export const userData = (state) => state.userInfo.userData;
 export const userLoginData = (state) => state.userInfo.userLoginData;
 export const loginStatus = (state) => state.userInfo.loginStatus;
+export const userError = (state) => state.userInfo.error;
 export const { getUserLoginData, setLoginStatus } = userInfoSlice.actions;

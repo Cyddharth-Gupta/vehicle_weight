@@ -5,8 +5,12 @@ import { useForm } from "react-hook-form";
 import { logInUser } from "../redux_store/slice/userInfoSlice";
 import { getUserLoginData } from "../redux_store/slice/userInfoSlice";
 import { userData } from "../redux_store/slice/userInfoSlice";
+import { setLoginStatus } from "../redux_store/slice/userInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { userError } from "../redux_store/slice/userInfoSlice";
+import { loginStatus } from "../redux_store/slice/userInfoSlice";
+import { userInfoLoading } from "../redux_store/slice/userInfoSlice";
 
 const LoginPage = ({onLogin}) => {
   const {
@@ -18,7 +22,29 @@ const LoginPage = ({onLogin}) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (event) => {
+  const userLogInData = useSelector(userData);
+  const isLoggedIn = useSelector(loginStatus);
+  const isLoading = useSelector(userInfoLoading);
+  const error = useSelector(userError);
+
+  const handleLogin = () => {
+    console.log(userLogInData);
+    if (userLogInData?.data?.isUserRegistered === true) {
+      dispatch(setLoginStatus(true));
+      toast.success("Login Successful");
+    } else if (userLogInData?.isUserRegistered === false || error !== null) {
+      dispatch(setLoginStatus(false));
+      toast.error("Login Failed");
+    }
+  };
+
+  React.useEffect(() => {
+     userLogInData !== null && handleLogin();
+     console.log(userLogInData);
+  },[userLogInData]);
+
+
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -28,9 +54,7 @@ const LoginPage = ({onLogin}) => {
     });
     dispatch(logInUser(formDataObject));
     console.log(formDataObject);
-    onLogin();
-    const form = event.target;
-    form.reset();
+    
   };
   const fields = [
     {
